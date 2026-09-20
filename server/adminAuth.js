@@ -210,12 +210,6 @@ export function loadAdmins() {
       }
     );
 
-  // Format utama:
-  //
-  // {
-  //   "admins": [...]
-  // }
-
   if (
     data &&
     Array.isArray(
@@ -224,13 +218,6 @@ export function loadAdmins() {
   ) {
     return data.admins;
   }
-
-  // Kompatibilitas:
-  //
-  // [
-  //   {...},
-  //   {...}
-  // ]
 
   if (
     Array.isArray(data)
@@ -244,16 +231,6 @@ export function loadAdmins() {
 // ============================================================
 // SANITIZE ADMIN
 // ============================================================
-//
-// PENTING:
-// Tidak ada avatar/photo/profilePhoto di sini.
-//
-// Avatar Telegram harus diambil secara realtime
-// melalui endpoint Telegram profile.
-//
-// Tidak disimpan ke:
-// server/avatar/team/
-//
 
 export function sanitizeAdmin(
   admin
@@ -611,10 +588,6 @@ export function setAdminCookie(
   res,
   sessionId
 ) {
-  const secure =
-    process.env.NODE_ENV ===
-    "production";
-
   const cookie = [
     `${COOKIE_NAME}=${encodeURIComponent(
       sessionId
@@ -624,18 +597,14 @@ export function setAdminCookie(
 
     "HttpOnly",
 
-    "SameSite=Lax",
+    "Secure",
+
+    "SameSite=None",
 
     `Max-Age=${Math.floor(
       SESSION_TTL / 1000
     )}`,
   ];
-
-  if (secure) {
-    cookie.push(
-      "Secure"
-    );
-  }
 
   res.setHeader(
     "Set-Cookie",
@@ -650,10 +619,6 @@ export function setAdminCookie(
 export function clearAdminCookie(
   res
 ) {
-  const secure =
-    process.env.NODE_ENV ===
-    "production";
-
   const cookie = [
     `${COOKIE_NAME}=`,
 
@@ -661,16 +626,12 @@ export function clearAdminCookie(
 
     "HttpOnly",
 
-    "SameSite=Lax",
+    "Secure",
+
+    "SameSite=None",
 
     "Max-Age=0",
   ];
-
-  if (secure) {
-    cookie.push(
-      "Secure"
-    );
-  }
 
   res.setHeader(
     "Set-Cookie",
