@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 import EventEditor from "./EventEditor";
-import "./admin.css";
+import "./Admin.css";
 
 const API_BASE = (
   import.meta.env.VITE_COMMUNITY_API_URL ||
