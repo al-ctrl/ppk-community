@@ -1,0 +1,9 @@
+node_modules/
+dist/
+
+.env
+
+server/session.txt
+server/community.json.bak
+server/admin-sessions.json
+server/avatars/

@@ -1,0 +1,28 @@
+{
+  "admins": [
+    {
+      "id": "8a9d456f-7aa0-4f71-bc43-0b21d07fa294",
+      "username": "admin",
+      "passwordHash": "scrypt:b0b9dba8379946f8d86440bbb717b047:4b12a7a604ae79e91e9c6cedd84de7c64f175a3fa317f15cacac1a6210f581d18dce349c5d0c2712c9516b333bc56c9e66fcbd79afbe653c510b9c20c28981b9",
+      "createdAt": "2026-09-19T11:06:51.812Z"
+    },
+    {
+      "id": "5288e1f8-0aa8-4ad1-963a-b29e1897bbfc",
+      "username": "dewa",
+      "passwordHash": "scrypt:26c045423de683a077e19a8962b3e068:9ae171064d9aa23ba3a4f5e4836c9c8dfc941f98a03398a62f214964e517e570c1d7a678f364b6e4e59661cf16b88de03aa7cc8825c5b1891acaf6bd9f2a905a",
+      "createdAt": "2026-09-20T08:05:03.401Z"
+    },
+    {
+      "id": "26d56f24-c6fc-40d2-8259-8e6e67bb1984",
+      "username": "paya",
+      "passwordHash": "scrypt:9da2c1be71b469e7edafacc03d10d685:34ee014b65883c34d13dd6151a39e20dd976bc7c62cfdc0331a25b3095756298bb11c558845bd534191f07808233d7a329660963177adfb2bd50f2cb49e5639c",
+      "createdAt": "2026-09-20T08:05:14.628Z"
+    },
+    {
+      "id": "b9d99786-bf8d-49a8-975f-555ddc01f771",
+      "username": "elwey",
+      "passwordHash": "scrypt:b156be5a29408f7781bb181aa649141e:bad8c05e8303e289a2c24e827c6bf0a249510d8b98f3cc182f5dff92d296050eb5d33fe6e6061949fe39d9e167d30a4ebca772c311dbbf85c6355ce8ae11334c",
+      "createdAt": "2026-09-20T08:05:37.907Z"
+    }
+  ]
+}

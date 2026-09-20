@@ -1,0 +1,2015 @@
+/* ============================================================
+   PPK ADMIN
+   Login + Dashboard + Event Editor
+============================================================ */
+
+:root {
+  --ppk-admin-bg: #07100c;
+  --ppk-admin-bg-soft: #0b1711;
+  --ppk-admin-panel: #0d1b14;
+  --ppk-admin-panel-2: #102219;
+  --ppk-admin-border: rgba(147, 255, 190, 0.1);
+  --ppk-admin-border-strong: rgba(147, 255, 190, 0.18);
+  --ppk-admin-green: #72f5a5;
+  --ppk-admin-green-strong: #3ee879;
+  --ppk-admin-green-dark: #173f29;
+  --ppk-admin-text: #f2fff6;
+  --ppk-admin-text-soft: #a8b9ae;
+  --ppk-admin-text-muted: #718077;
+  --ppk-admin-danger: #ff6f7d;
+  --ppk-admin-warning: #ffc86b;
+  --ppk-admin-radius: 16px;
+  --ppk-admin-radius-small: 11px;
+  --ppk-admin-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+
+.ppk-admin-dashboard,
+.ppk-admin-login,
+.ppk-admin-modal-backdrop {
+  box-sizing: border-box;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.ppk-admin-dashboard *,
+.ppk-admin-login *,
+.ppk-admin-modal-backdrop * {
+  box-sizing: border-box;
+}
+
+.ppk-admin-dashboard button,
+.ppk-admin-login button,
+.ppk-admin-modal-backdrop button,
+.ppk-admin-dashboard input,
+.ppk-admin-dashboard textarea,
+.ppk-admin-dashboard select,
+.ppk-admin-modal-backdrop input,
+.ppk-admin-modal-backdrop textarea,
+.ppk-admin-modal-backdrop select {
+  font: inherit;
+}
+
+/* ============================================================
+   GLOBAL
+============================================================ */
+
+.ppk-admin-dashboard {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(55, 220, 115, 0.07),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(80, 255, 150, 0.045),
+      transparent 25%
+    ),
+    var(--ppk-admin-bg);
+  color: var(--ppk-admin-text);
+}
+
+.ppk-admin-dashboard button,
+.ppk-admin-login button,
+.ppk-admin-modal-backdrop button {
+  cursor: pointer;
+}
+
+.ppk-admin-dashboard button:disabled,
+.ppk-admin-login button:disabled,
+.ppk-admin-modal-backdrop button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.ppk-admin-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ppk-admin-bg);
+  color: var(--ppk-admin-text);
+}
+
+.ppk-admin-loading-card {
+  min-width: 260px;
+  padding: 25px;
+  border: 1px solid var(--ppk-admin-border);
+  border-radius: 18px;
+  background: var(--ppk-admin-panel);
+  box-shadow: var(--ppk-admin-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ppk-admin-spinner,
+.ppk-admin-button-spinner {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: var(--ppk-admin-green);
+  animation: ppkAdminSpin 0.75s linear infinite;
+}
+
+.ppk-admin-button-spinner {
+  width: 15px;
+  height: 15px;
+  border-width: 2px;
+}
+
+.ppk-admin-spin {
+  animation: ppkAdminSpin 0.75s linear infinite;
+}
+
+@keyframes ppkAdminSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   LOGIN
+============================================================ */
+
+.ppk-admin-login {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 18px;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(74, 244, 132, 0.1),
+      transparent 35%
+    ),
+    #050c08;
+  color: var(--ppk-admin-text);
+}
+
+.ppk-admin-login-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.ppk-admin-login-glow-one {
+  top: -200px;
+  left: -120px;
+  background: rgba(64, 231, 120, 0.08);
+}
+
+.ppk-admin-login-glow-two {
+  right: -180px;
+  bottom: -220px;
+  background: rgba(45, 183, 103, 0.06);
+}
+
+.ppk-admin-login-card {
+  width: min(100%, 430px);
+  position: relative;
+  z-index: 2;
+  padding: 34px;
+  border: 1px solid var(--ppk-admin-border-strong);
+  border-radius: 24px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(20, 39, 28, 0.96),
+      rgba(8, 18, 12, 0.97)
+    );
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.5),
+    inset 0 1px rgba(255, 255, 255, 0.025);
+}
+
+.ppk-admin-login-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  background:
+    linear-gradient(
+      145deg,
+      var(--ppk-admin-green),
+      #2dc76d
+    );
+  color: #041009;
+  font-weight: 950;
+  letter-spacing: -1px;
+  font-size: 20px;
+  box-shadow:
+    0 14px 40px rgba(70, 235, 125, 0.18);
+}
+
+.ppk-admin-login-badge {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(114, 245, 165, 0.16);
+  background: rgba(114, 245, 165, 0.07);
+  color: var(--ppk-admin-green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.ppk-admin-login-card h1 {
+  margin: 17px 0 7px;
+  font-size: 31px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.ppk-admin-login-card > p {
+  margin: 0;
+  color: var(--ppk-admin-text-soft);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.ppk-admin-login-error {
+  margin-top: 20px;
+  padding: 12px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 111, 125, 0.18);
+  background: rgba(255, 111, 125, 0.07);
+  color: #ffabb3;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+}
+
+.ppk-admin-login-form {
+  margin-top: 25px;
+  display: grid;
+  gap: 17px;
+}
+
+.ppk-admin-login-field {
+  display: grid;
+  gap: 8px;
+}
+
+.ppk-admin-login-field span {
+  font-size: 12px;
+  color: var(--ppk-admin-text-soft);
+  font-weight: 700;
+}
+
+.ppk-admin-login-field input {
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+  border-radius: 11px;
+  outline: none;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--ppk-admin-text);
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+
+.ppk-admin-login-field input::placeholder {
+  color: #55645a;
+}
+
+.ppk-admin-login-field input:focus {
+  border-color: rgba(114, 245, 165, 0.45);
+  background: rgba(114, 245, 165, 0.025);
+}
+
+.ppk-admin-login-button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 3px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--ppk-admin-green);
+  color: #051008;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 850;
+  transition:
+    transform 0.18s,
+    box-shadow 0.18s;
+}
+
+.ppk-admin-login-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 35px rgba(114, 245, 165, 0.16);
+}
+
+.ppk-admin-login-footer {
+  margin-top: 25px;
+  padding-top: 18px;
+  border-top: 1px solid var(--ppk-admin-border);
+  text-align: center;
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+}
+
+/* ============================================================
+   TOPBAR
+============================================================ */
+
+.ppk-admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 72px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ppk-admin-border);
+  background: rgba(5, 13, 8, 0.88);
+  backdrop-filter: blur(20px);
+}
+
+.ppk-admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.ppk-admin-brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ppk-admin-green);
+  color: #061009;
+  font-weight: 950;
+  font-size: 12px;
+}
+
+.ppk-admin-brand-copy {
+  display: grid;
+  gap: 1px;
+}
+
+.ppk-admin-brand-copy strong {
+  font-size: 14px;
+}
+
+.ppk-admin-brand-copy span {
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+}
+
+.ppk-admin-user-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ppk-admin-user-info {
+  display: grid;
+  gap: 1px;
+  text-align: right;
+}
+
+.ppk-admin-user-info span {
+  color: var(--ppk-admin-text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.ppk-admin-user-info strong {
+  font-size: 12px;
+}
+
+.ppk-admin-logout-button {
+  height: 38px;
+  padding: 0 13px;
+  border-radius: 9px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ppk-admin-text-soft);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ppk-admin-logout-button:hover {
+  border-color: rgba(255, 111, 125, 0.25);
+  color: #ff9ca7;
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.ppk-admin-container {
+  width: min(1400px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 38px 0 70px;
+}
+
+.ppk-admin-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+.ppk-admin-eyebrow,
+.ppk-admin-panel-eyebrow,
+.ppk-admin-section-kicker {
+  color: var(--ppk-admin-green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.ppk-admin-heading h1 {
+  margin: 7px 0 5px;
+  font-size: 35px;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.ppk-admin-heading p {
+  margin: 0;
+  color: var(--ppk-admin-text-soft);
+  font-size: 13px;
+}
+
+.ppk-admin-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.ppk-admin-primary-btn,
+.ppk-admin-secondary-btn {
+  min-height: 40px;
+  padding: 0 13px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid transparent;
+  transition:
+    transform 0.15s,
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.ppk-admin-primary-btn {
+  background: var(--ppk-admin-green);
+  color: #051008;
+}
+
+.ppk-admin-primary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ppk-admin-secondary-btn {
+  border-color: var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ppk-admin-text-soft);
+}
+
+.ppk-admin-secondary-btn:hover:not(:disabled) {
+  border-color: var(--ppk-admin-border-strong);
+  color: var(--ppk-admin-text);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+/* ============================================================
+   ALERT
+============================================================ */
+
+.ppk-admin-alert {
+  margin-bottom: 18px;
+  min-height: 47px;
+  padding: 11px 13px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+}
+
+.ppk-admin-alert > span {
+  flex: 1;
+}
+
+.ppk-admin-alert button {
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.ppk-admin-alert-error {
+  border: 1px solid rgba(255, 111, 125, 0.16);
+  background: rgba(255, 111, 125, 0.06);
+  color: #ffabb3;
+}
+
+.ppk-admin-alert-success {
+  border: 1px solid rgba(114, 245, 165, 0.16);
+  background: rgba(114, 245, 165, 0.055);
+  color: var(--ppk-admin-green);
+}
+
+/* ============================================================
+   STATS
+============================================================ */
+
+.ppk-admin-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.ppk-admin-stat-card {
+  min-height: 104px;
+  padding: 17px;
+  border-radius: var(--ppk-admin-radius);
+  border: 1px solid var(--ppk-admin-border);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 35, 25, 0.82),
+      rgba(9, 20, 13, 0.82)
+    );
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.ppk-admin-stat-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: rgba(114, 245, 165, 0.075);
+  color: var(--ppk-admin-green);
+}
+
+.ppk-admin-stat-content {
+  display: grid;
+  gap: 5px;
+}
+
+.ppk-admin-stat-content span {
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+}
+
+.ppk-admin-stat-content strong {
+  font-size: 23px;
+  letter-spacing: -0.04em;
+}
+
+/* ============================================================
+   EVENTS PANEL
+============================================================ */
+
+.ppk-admin-events-panel {
+  border: 1px solid var(--ppk-admin-border);
+  border-radius: 18px;
+  background: rgba(10, 22, 15, 0.78);
+  overflow: hidden;
+}
+
+.ppk-admin-panel-header {
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--ppk-admin-border);
+}
+
+.ppk-admin-panel-header h2 {
+  margin: 5px 0 0;
+  font-size: 19px;
+  letter-spacing: -0.025em;
+}
+
+.ppk-admin-event-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.ppk-admin-search,
+.ppk-admin-filter {
+  height: 38px;
+  border-radius: 9px;
+  border: 1px solid var(--ppk-admin-border);
+  outline: none;
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--ppk-admin-text);
+  font-size: 12px;
+}
+
+.ppk-admin-search {
+  width: 210px;
+  padding: 0 12px;
+}
+
+.ppk-admin-filter {
+  min-width: 145px;
+  padding: 0 10px;
+}
+
+.ppk-admin-search:focus,
+.ppk-admin-filter:focus {
+  border-color: rgba(114, 245, 165, 0.4);
+}
+
+.ppk-admin-event-list {
+  display: grid;
+}
+
+.ppk-admin-event-card {
+  border-bottom: 1px solid var(--ppk-admin-border);
+}
+
+.ppk-admin-event-card:last-child {
+  border-bottom: 0;
+}
+
+.ppk-admin-event-main {
+  min-height: 98px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.ppk-admin-event-expand {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ppk-admin-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppk-admin-event-expand:hover {
+  color: var(--ppk-admin-green);
+  border-color: var(--ppk-admin-border-strong);
+}
+
+.ppk-admin-event-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.ppk-admin-event-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.ppk-admin-event-title-row h3 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.ppk-admin-event-description {
+  margin: 5px 0 0;
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+  max-width: 700px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ppk-admin-status {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ppk-admin-status-draft {
+  color: #b6c0ba;
+  background: rgba(180, 190, 185, 0.08);
+}
+
+.ppk-admin-status-upcoming {
+  color: #79c9ff;
+  background: rgba(83, 178, 255, 0.08);
+}
+
+.ppk-admin-status-ongoing {
+  color: var(--ppk-admin-green);
+  background: rgba(114, 245, 165, 0.08);
+}
+
+.ppk-admin-status-completed {
+  color: #d4b8ff;
+  background: rgba(180, 135, 255, 0.08);
+}
+
+.ppk-admin-status-cancelled {
+  color: #ff9da7;
+  background: rgba(255, 111, 125, 0.08);
+}
+
+.ppk-admin-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+}
+
+.ppk-admin-event-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ppk-admin-text-muted);
+  font-size: 10px;
+}
+
+.ppk-admin-event-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ppk-admin-status-select {
+  height: 34px;
+  padding: 0 8px;
+  border-radius: 8px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--ppk-admin-text-soft);
+  font-size: 10px;
+  font-weight: 700;
+  outline: none;
+}
+
+.ppk-admin-status-select-ongoing {
+  border-color: rgba(114, 245, 165, 0.2);
+  color: var(--ppk-admin-green);
+}
+
+.ppk-admin-status-select-completed {
+  color: #d4b8ff;
+}
+
+.ppk-admin-status-select-cancelled {
+  color: #ff9da7;
+}
+
+.ppk-admin-icon-btn {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ppk-admin-text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppk-admin-icon-btn:hover:not(:disabled) {
+  color: var(--ppk-admin-text);
+  border-color: var(--ppk-admin-border-strong);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.ppk-admin-icon-danger:hover:not(:disabled) {
+  color: var(--ppk-admin-danger);
+  border-color: rgba(255, 111, 125, 0.22);
+  background: rgba(255, 111, 125, 0.045);
+}
+
+/* ============================================================
+   EVENT DETAILS
+============================================================ */
+
+.ppk-admin-event-details {
+  padding: 0 20px 20px 86px;
+}
+
+.ppk-admin-challenge-preview {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(230px, 1fr)
+    );
+  gap: 9px;
+  border-top: 1px solid var(--ppk-admin-border);
+  padding-top: 15px;
+}
+
+.ppk-admin-challenge-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.ppk-admin-challenge-preview-header > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.ppk-admin-challenge-preview-header span {
+  color: var(--ppk-admin-green);
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+}
+
+.ppk-admin-challenge-preview-header strong {
+  font-size: 12px;
+}
+
+.ppk-admin-challenge-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ppk-admin-text-muted);
+  font-size: 10px;
+}
+
+.ppk-admin-participant-preview {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.ppk-admin-participant-preview span {
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--ppk-admin-text-soft);
+  font-size: 9px;
+}
+
+.ppk-admin-participant-preview .ppk-admin-more-participants {
+  color: var(--ppk-admin-green);
+}
+
+.ppk-admin-no-participants,
+.ppk-admin-event-no-challenge {
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+}
+
+.ppk-admin-empty {
+  min-height: 260px;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  color: var(--ppk-admin-text-muted);
+}
+
+.ppk-admin-empty strong {
+  color: var(--ppk-admin-text-soft);
+  font-size: 13px;
+}
+
+.ppk-admin-empty span {
+  max-width: 390px;
+  line-height: 1.5;
+  font-size: 11px;
+}
+
+.ppk-admin-empty .ppk-admin-primary-btn {
+  margin-top: 8px;
+}
+
+.ppk-admin-empty-icon {
+  width: 49px;
+  height: 49px;
+  border-radius: 14px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ppk-admin-green);
+  background: rgba(114, 245, 165, 0.06);
+}
+
+/* ============================================================
+   WINNERS / TELEGRAM
+============================================================ */
+
+.ppk-admin-winner-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.ppk-admin-winner-card {
+  min-width: 0;
+  padding: 10px 11px;
+  border-radius: 10px;
+  border: 1px solid var(--ppk-admin-border);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(114, 245, 165, 0.045),
+      rgba(255, 255, 255, 0.015)
+    );
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.ppk-admin-winner-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(114, 245, 165, 0.22);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(114, 245, 165, 0.07),
+      rgba(255, 255, 255, 0.02)
+    );
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.16);
+}
+
+.ppk-admin-winner-position {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(114, 245, 165, 0.07);
+  color: var(--ppk-admin-green);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.ppk-admin-winner-info {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+
+.ppk-admin-winner-info strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ppk-admin-text);
+  font-size: 11px;
+}
+
+.ppk-admin-winner-info span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ppk-admin-text-muted);
+  font-size: 9px;
+}
+
+.ppk-admin-winner-prize {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 7px;
+  background: rgba(255, 200, 107, 0.06);
+  border: 1px solid rgba(255, 200, 107, 0.1);
+  color: var(--ppk-admin-warning);
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.ppk-admin-winner-telegram {
+  width: 29px;
+  height: 29px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(114, 245, 165, 0.07);
+  color: var(--ppk-admin-green);
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.ppk-admin-winner-telegram:hover {
+  transform: translateY(-1px);
+  background: rgba(114, 245, 165, 0.14);
+}
+
+.ppk-admin-winner-telegram-link {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ppk-admin-winner-telegram-link:hover {
+  text-decoration: none;
+}
+
+.ppk-admin-winner-telegram-link:hover
+.ppk-admin-winner-card {
+  border-color: rgba(114, 245, 165, 0.3);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(114, 245, 165, 0.09),
+      rgba(255, 255, 255, 0.025)
+    );
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.ppk-admin-winner-no-telegram {
+  opacity: 0.7;
+}
+
+.ppk-admin-winner-no-telegram .ppk-admin-winner-card {
+  cursor: default;
+}
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+.ppk-admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 7, 4, 0.76);
+  backdrop-filter: blur(8px);
+}
+
+.ppk-admin-editor-modal {
+  width: min(1080px, 100%);
+  max-height: calc(100vh - 44px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--ppk-admin-border-strong);
+  background: #0a1710;
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.6);
+}
+
+.ppk-admin-editor-header {
+  padding: 20px 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--ppk-admin-border);
+}
+
+.ppk-admin-editor-header h2 {
+  margin: 6px 0 4px;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+}
+
+.ppk-admin-editor-header p {
+  margin: 0;
+  color: var(--ppk-admin-text-muted);
+  font-size: 11px;
+}
+
+.ppk-admin-modal-close {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ppk-admin-text-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppk-admin-modal-close:hover:not(:disabled) {
+  color: var(--ppk-admin-danger);
+  border-color: rgba(255, 111, 125, 0.2);
+}
+
+.ppk-admin-editor-error {
+  margin: 14px 20px 0;
+  padding: 11px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 111, 125, 0.17);
+  background: rgba(255, 111, 125, 0.055);
+  color: #ffabb3;
+  font-size: 12px;
+}
+
+/* ============================================================
+   EDITOR BODY
+============================================================ */
+
+.ppk-admin-editor-body {
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.ppk-admin-editor-section {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--ppk-admin-border);
+}
+
+.ppk-admin-editor-section:first-child {
+  padding-top: 0;
+}
+
+.ppk-admin-editor-section:last-child {
+  border-bottom: 0;
+}
+
+.ppk-admin-section-heading-row {
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.ppk-admin-section-title {
+  margin: 5px 0 0;
+  font-size: 15px;
+}
+
+.ppk-admin-form-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ppk-admin-field {
+  display: grid;
+  gap: 7px;
+}
+
+.ppk-admin-field.span-2 {
+  grid-column: span 2;
+}
+
+.ppk-admin-field > span {
+  color: var(--ppk-admin-text-soft);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.ppk-admin-field input,
+.ppk-admin-field textarea,
+.ppk-admin-field select,
+.ppk-admin-rule-row input,
+.ppk-admin-participant-row input,
+.ppk-admin-custom-item input {
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--ppk-admin-border);
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.17);
+  color: var(--ppk-admin-text);
+  transition: border-color 0.16s;
+}
+
+.ppk-admin-field input,
+.ppk-admin-field select {
+  height: 39px;
+  padding: 0 11px;
+  font-size: 11px;
+}
+
+.ppk-admin-field textarea {
+  min-height: 85px;
+  padding: 10px 11px;
+  resize: vertical;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.ppk-admin-field input:focus,
+.ppk-admin-field textarea:focus,
+.ppk-admin-field select:focus,
+.ppk-admin-rule-row input:focus,
+.ppk-admin-participant-row input:focus,
+.ppk-admin-custom-item input:focus {
+  border-color: rgba(114, 245, 165, 0.38);
+}
+
+.ppk-admin-input-with-icon {
+  position: relative;
+}
+
+.ppk-admin-input-with-icon > svg {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ppk-admin-text-muted);
+  pointer-events: none;
+}
+
+.ppk-admin-input-with-icon input {
+  padding-left: 35px;
+}
+
+/* ============================================================
+   RULES
+============================================================ */
+
+.ppk-admin-rules-editor {
+  display: grid;
+  gap: 7px;
+}
+
+.ppk-admin-rule-row {
+  display: grid;
+  grid-template-columns:
+    25px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 7px;
+}
+
+.ppk-admin-rule-row > span {
+  color: var(--ppk-admin-text-muted);
+  text-align: center;
+  font-size: 10px;
+}
+
+.ppk-admin-rule-row input {
+  height: 38px;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.ppk-admin-delete-small {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ppk-admin-text-muted);
+}
+
+.ppk-admin-delete-small:hover:not(:disabled) {
+  color: var(--ppk-admin-danger);
+  border-color: rgba(255, 111, 125, 0.2);
+  background: rgba(255, 111, 125, 0.04);
+}
+
+.ppk-admin-empty-inline {
+  padding: 15px;
+  border-radius: 9px;
+  border: 1px dashed var(--ppk-admin-border);
+  color: var(--ppk-admin-text-muted);
+  font-size: 10px;
+  text-align: center;
+}
+
+/* ============================================================
+   CHALLENGES
+============================================================ */
+
+.ppk-admin-challenges {
+  display: grid;
+  gap: 10px;
+}
+
+.ppk-admin-challenge-card {
+  overflow: hidden;
+  border-radius: 13px;
+  border: 1px solid var(--ppk-admin-border);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.ppk-admin-challenge-header {
+  min-height: 57px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-bottom: 1px solid transparent;
+}
+
+.ppk-admin-challenge-card:has(
+  .ppk-admin-challenge-body
+) .ppk-admin-challenge-header {
+  border-bottom-color: var(--ppk-admin-border);
+}
+
+.ppk-admin-challenge-toggle {
+  width: 29px;
+  height: 29px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ppk-admin-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ppk-admin-challenge-toggle:hover {
+  color: var(--ppk-admin-green);
+}
+
+.ppk-admin-drag {
+  color: #46534b;
+  display: flex;
+}
+
+.ppk-admin-challenge-number {
+  width: 29px;
+  height: 29px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(114, 245, 165, 0.07);
+  color: var(--ppk-admin-green);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.ppk-admin-challenge-title {
+  min-width: 0;
+  flex: 1;
+  display: grid;
+  gap: 2px;
+}
+
+.ppk-admin-challenge-title strong {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ppk-admin-challenge-title span {
+  color: var(--ppk-admin-text-muted);
+  font-size: 9px;
+}
+
+.ppk-admin-challenge-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.ppk-admin-challenge-body {
+  padding: 15px;
+}
+
+.ppk-admin-participants,
+.ppk-admin-custom-items {
+  margin-top: 17px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ppk-admin-border);
+}
+
+.ppk-admin-subheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 11px;
+}
+
+.ppk-admin-subheading > div {
+  display: grid;
+  gap: 3px;
+}
+
+.ppk-admin-subheading strong {
+  font-size: 11px;
+}
+
+.ppk-admin-subheading span {
+  color: var(--ppk-admin-text-muted);
+  font-size: 9px;
+}
+
+.ppk-admin-participant-list {
+  display: grid;
+  gap: 8px;
+}
+
+/* ============================================================
+   PARTICIPANT / CLAIM HADIAH
+============================================================ */
+
+.ppk-admin-participant-row {
+  display: grid;
+
+  /*
+    31px  = nomor posisi
+    1     = username pemenang
+    2     = user ID
+    3     = hadiah
+    4     = username claim/admin penerima
+    34px  = checkbox
+  */
+  grid-template-columns:
+    31px
+    minmax(150px, 1.1fr)
+    minmax(120px, 0.8fr)
+    minmax(150px, 0.9fr)
+    minmax(190px, 1.25fr)
+    34px;
+
+  gap: 6px;
+  align-items: center;
+  padding: 6px;
+
+  border: 1px solid rgba(114, 245, 165, 0.055);
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(114, 245, 165, 0.025),
+      rgba(0, 0, 0, 0.08)
+    );
+
+  transition:
+    border-color 0.16s ease,
+    background 0.16s ease;
+}
+
+.ppk-admin-participant-row:hover {
+  border-color: rgba(114, 245, 165, 0.13);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(114, 245, 165, 0.045),
+      rgba(0, 0, 0, 0.1)
+    );
+}
+
+.ppk-admin-participant-row input {
+  height: 37px;
+  padding: 0 10px;
+  font-size: 10px;
+  min-width: 0;
+}
+
+.ppk-admin-participant-row input::placeholder {
+  color: #526158;
+}
+
+.ppk-admin-participant-row input:focus {
+  border-color: rgba(114, 245, 165, 0.42);
+  background: rgba(114, 245, 165, 0.025);
+}
+
+/*
+   Input claim hadiah dibuat sedikit lebih menonjol
+   supaya admin langsung tahu bahwa ini field baru.
+*/
+.ppk-admin-participant-row input[placeholder*="Claim"] {
+  border-color: rgba(255, 200, 107, 0.13);
+  background: rgba(255, 200, 107, 0.025);
+}
+
+.ppk-admin-participant-row input[placeholder*="Claim"]:focus {
+  border-color: rgba(255, 200, 107, 0.4);
+  background: rgba(255, 200, 107, 0.045);
+}
+
+.ppk-admin-position {
+  width: 31px;
+  height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  background: rgba(114, 245, 165, 0.07);
+  color: var(--ppk-admin-green);
+  font-size: 9px;
+  font-weight: 850;
+}
+
+/* ============================================================
+   CLAIM LABEL / OPTIONAL SUPPORT
+============================================================ */
+
+.ppk-admin-claim-field {
+  position: relative;
+}
+
+.ppk-admin-claim-field input {
+  border-color: rgba(255, 200, 107, 0.15);
+}
+
+.ppk-admin-claim-field input:focus {
+  border-color: rgba(255, 200, 107, 0.4);
+}
+
+.ppk-admin-claim-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: var(--ppk-admin-warning);
+  background: rgba(255, 200, 107, 0.06);
+  border: 1px solid rgba(255, 200, 107, 0.1);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+/* ============================================================
+   CUSTOM ITEMS
+============================================================ */
+
+.ppk-admin-custom-items {
+  display: grid;
+}
+
+.ppk-admin-custom-item {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    34px;
+  gap: 6px;
+  align-items: center;
+}
+
+.ppk-admin-custom-item + .ppk-admin-custom-item {
+  margin-top: 6px;
+}
+
+.ppk-admin-custom-item input {
+  height: 35px;
+  padding: 0 9px;
+  font-size: 10px;
+}
+
+.ppk-admin-add-challenge-large {
+  width: 100%;
+  min-height: 45px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 1px dashed rgba(114, 245, 165, 0.2);
+  background: rgba(114, 245, 165, 0.025);
+  color: var(--ppk-admin-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.ppk-admin-add-challenge-large:hover:not(:disabled) {
+  background: rgba(114, 245, 165, 0.05);
+  border-color: rgba(114, 245, 165, 0.32);
+}
+
+/* ============================================================
+   EDITOR FOOTER
+============================================================ */
+
+.ppk-admin-editor-footer {
+  min-height: 66px;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--ppk-admin-border);
+  background: rgba(5, 13, 8, 0.7);
+}
+
+/* ============================================================
+   SCROLLBAR
+============================================================ */
+
+.ppk-admin-editor-body::-webkit-scrollbar,
+.ppk-admin-dashboard::-webkit-scrollbar {
+  width: 7px;
+}
+
+.ppk-admin-editor-body::-webkit-scrollbar-track,
+.ppk-admin-dashboard::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ppk-admin-editor-body::-webkit-scrollbar-thumb,
+.ppk-admin-dashboard::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 1200px) {
+  .ppk-admin-participant-row {
+    grid-template-columns:
+      31px
+      minmax(130px, 1fr)
+      minmax(110px, 0.8fr)
+      minmax(130px, 0.9fr)
+      minmax(160px, 1fr)
+      34px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .ppk-admin-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ppk-admin-event-main {
+    align-items: flex-start;
+  }
+
+  .ppk-admin-event-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .ppk-admin-participant-row {
+    grid-template-columns:
+      31px
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      34px;
+  }
+
+  .ppk-admin-participant-row input:nth-of-type(3),
+  .ppk-admin-participant-row input:nth-of-type(4) {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 800px) {
+  .ppk-admin-topbar {
+    padding: 0 15px;
+  }
+
+  .ppk-admin-container {
+    width: min(
+      100% - 24px,
+      1400px
+    );
+    padding-top: 25px;
+  }
+
+  .ppk-admin-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ppk-admin-heading-actions {
+    width: 100%;
+  }
+
+  .ppk-admin-heading-actions button {
+    flex: 1;
+  }
+
+  .ppk-admin-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ppk-admin-panel-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ppk-admin-event-filters {
+    width: 100%;
+  }
+
+  .ppk-admin-search,
+  .ppk-admin-filter {
+    flex: 1;
+    width: auto;
+  }
+
+  .ppk-admin-event-main {
+    flex-wrap: wrap;
+  }
+
+  .ppk-admin-event-info {
+    width: calc(100% - 55px);
+    flex: initial;
+  }
+
+  .ppk-admin-event-actions {
+    width: 100%;
+    padding-left: 46px;
+    justify-content: flex-start;
+  }
+
+  .ppk-admin-event-details {
+    padding-left: 20px;
+  }
+
+  /*
+    Mobile:
+    setiap input dibuat satu baris supaya Claim
+    tidak tersembunyi atau terlalu sempit.
+  */
+  .ppk-admin-participant-row {
+    grid-template-columns:
+      31px
+      minmax(0, 1fr)
+      34px;
+    gap: 7px;
+    padding: 7px;
+  }
+
+  .ppk-admin-participant-row input:nth-of-type(1) {
+    grid-column: 2;
+  }
+
+  .ppk-admin-participant-row input:nth-of-type(2),
+  .ppk-admin-participant-row input:nth-of-type(3),
+  .ppk-admin-participant-row input:nth-of-type(4) {
+    grid-column: 2 / -1;
+  }
+
+  .ppk-admin-custom-item {
+    grid-template-columns:
+      minmax(0, 1fr)
+      34px;
+  }
+
+  .ppk-admin-custom-item input:nth-of-type(2),
+  .ppk-admin-custom-item input:nth-of-type(3) {
+    grid-column: 1 / -1;
+  }
+
+  .ppk-admin-winner-card {
+    align-items: flex-start;
+  }
+
+  .ppk-admin-winner-prize {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .ppk-admin-login-card {
+    padding: 25px 20px;
+  }
+
+  .ppk-admin-user-info {
+    display: none;
+  }
+
+  .ppk-admin-logout-button span {
+    display: none;
+  }
+
+  .ppk-admin-topbar {
+    min-height: 62px;
+  }
+
+  .ppk-admin-heading h1 {
+    font-size: 29px;
+  }
+
+  .ppk-admin-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ppk-admin-event-filters {
+    flex-direction: column;
+  }
+
+  .ppk-admin-event-main {
+    padding: 14px;
+  }
+
+  .ppk-admin-event-actions {
+    padding-left: 0;
+  }
+
+  .ppk-admin-status-select {
+    flex: 1;
+  }
+
+  .ppk-admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ppk-admin-field.span-2 {
+    grid-column: span 1;
+  }
+
+  .ppk-admin-modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .ppk-admin-editor-modal {
+    max-height: 96vh;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .ppk-admin-editor-body {
+    padding: 15px;
+  }
+
+  .ppk-admin-editor-footer {
+    padding: 10px 15px;
+  }
+
+  .ppk-admin-editor-footer button {
+    flex: 1;
+  }
+
+  .ppk-admin-section-heading-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ppk-admin-section-heading-row > button {
+    width: 100%;
+  }
+
+  .ppk-admin-rule-row {
+    grid-template-columns:
+      22px
+      minmax(0, 1fr)
+      34px;
+  }
+
+  .ppk-admin-challenge-body {
+    padding: 12px;
+  }
+
+  .ppk-admin-challenge-header {
+    padding: 8px;
+  }
+
+  .ppk-admin-winner-card {
+    padding: 9px;
+    gap: 7px;
+  }
+
+  .ppk-admin-winner-position {
+    width: 27px;
+    height: 27px;
+  }
+
+  .ppk-admin-winner-prize {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ppk-admin-winner-telegram {
+    width: 27px;
+    height: 27px;
+  }
+
+  .ppk-admin-participant-row {
+    grid-template-columns:
+      29px
+      minmax(0, 1fr)
+      32px;
+  }
+
+  .ppk-admin-participant-row input {
+    height: 38px;
+    font-size: 10px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.ppk-admin-dashboard button:focus-visible,
+.ppk-admin-login button:focus-visible,
+.ppk-admin-modal-backdrop button:focus-visible,
+.ppk-admin-dashboard input:focus-visible,
+.ppk-admin-dashboard textarea:focus-visible,
+.ppk-admin-dashboard select:focus-visible,
+.ppk-admin-modal-backdrop input:focus-visible,
+.ppk-admin-modal-backdrop textarea:focus-visible,
+.ppk-admin-modal-backdrop select:focus-visible,
+.ppk-admin-winner-telegram-link:focus-visible {
+  outline: 2px solid rgba(114, 245, 165, 0.65);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
