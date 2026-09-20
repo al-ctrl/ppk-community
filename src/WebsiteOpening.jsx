@@ -18,6 +18,15 @@ const scenes = [
 
 const DEVELOPER_USERNAME = "cottonbacconn";
 
+const API_BASE = (
+  import.meta.env.VITE_COMMUNITY_API_URL ||
+  "http://localhost:3001"
+).replace(/\/$/, "");
+
+function apiUrl(path) {
+  return `${API_BASE}${path}`;
+}
+
 export default function WebsiteOpening({
   started,
   onStart,
@@ -29,7 +38,9 @@ export default function WebsiteOpening({
   const [developer, setDeveloper] = useState({
     username: "@cottonbacconn",
     name: "Developer",
-    avatar: `/api/telegram/avatar/${DEVELOPER_USERNAME}`,
+    avatar: apiUrl(
+      `/api/telegram/avatar/${DEVELOPER_USERNAME}`
+    ),
     hasPhoto: true,
   });
 
@@ -47,7 +58,9 @@ export default function WebsiteOpening({
     async function loadDeveloper() {
       try {
         const response = await fetch(
-          `/api/team/${DEVELOPER_USERNAME}?t=${Date.now()}`,
+          apiUrl(
+            `/api/team/${DEVELOPER_USERNAME}?t=${Date.now()}`
+          ),
           {
             method: "GET",
             cache: "no-store",
@@ -59,6 +72,7 @@ export default function WebsiteOpening({
             "[OPENING] Gagal mengambil developer:",
             response.status
           );
+
           return;
         }
 
@@ -93,17 +107,41 @@ export default function WebsiteOpening({
 
         let avatar = data.photo || "";
 
+        /*
+         * Jika backend tidak memberikan URL foto,
+         * gunakan endpoint avatar Telegram.
+         */
         if (!avatar && data.hasPhoto !== false) {
-          avatar =
-            `/api/telegram/avatar/${DEVELOPER_USERNAME}?t=${Date.now()}`;
+          avatar = apiUrl(
+            `/api/telegram/avatar/${DEVELOPER_USERNAME}?t=${Date.now()}`
+          );
         }
 
-        console.log("[OPENING] Developer:", {
-          name,
-          username: `@${username}`,
-          avatar,
-          hasPhoto: data.hasPhoto,
-        });
+        /*
+         * Kalau backend memberikan path relatif
+         * seperti /api/telegram/avatar/xxx,
+         * ubah menjadi URL API lengkap.
+         */
+        if (
+          avatar &&
+          avatar.startsWith("/")
+        ) {
+          avatar = apiUrl(
+            `${avatar}${
+              avatar.includes("?") ? "&" : "?"
+            }t=${Date.now()}`
+          );
+        }
+
+        console.log(
+          "[OPENING] Developer:",
+          {
+            name,
+            username: `@${username}`,
+            avatar,
+            hasPhoto: data.hasPhoto,
+          }
+        );
 
         if (cancelled) {
           return;
@@ -136,8 +174,6 @@ export default function WebsiteOpening({
    * ============================================================
    * OPENING SCENE
    * ============================================================
-   *
-   * Opening BELUM dimulai sebelum tombol ditekan.
    */
 
   useEffect(() => {
