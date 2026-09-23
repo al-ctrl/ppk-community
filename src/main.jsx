@@ -51,7 +51,7 @@ const startWebsite = async () => {
       audio.preload = "auto";
 
       // Mulai dari 00:18
-      audio.currentTime = 132;
+      audio.currentTime = 120;
 
       // Play dulu dengan volume 0
       audio.volume = 0;
