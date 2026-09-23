@@ -9,7 +9,6 @@
   width: 100%;
   height: 100vh;
   height: 100dvh;
-
   z-index: 99999;
   overflow: hidden;
 
@@ -65,7 +64,6 @@
   height: 100%;
 
   overflow: hidden;
-
   pointer-events: none;
 }
 
@@ -95,7 +93,11 @@
 
   background: rgba(40, 255, 150, 0.15);
 
-  animation: glowOne 8s ease-in-out infinite;
+  animation:
+    glowOne
+    8s
+    ease-in-out
+    infinite;
 }
 
 .opening-glow-two {
@@ -104,7 +106,11 @@
 
   background: rgba(0, 180, 120, 0.12);
 
-  animation: glowTwo 10s ease-in-out infinite;
+  animation:
+    glowTwo
+    10s
+    ease-in-out
+    infinite;
 }
 
 @keyframes glowOne {
@@ -209,13 +215,15 @@
 
   opacity: 0.3;
 
-  left: calc(
-    5% + var(--particle-index) * 4%
-  );
+  left:
+    calc(
+      5% + var(--particle-index) * 4%
+    );
 
-  top: calc(
-    5% + var(--particle-index) * 3%
-  );
+  top:
+    calc(
+      5% + var(--particle-index) * 3%
+    );
 
   animation:
     particleFloat
@@ -254,12 +262,18 @@
   height: 100%;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   box-sizing: border-box;
 
-  padding: 40px 30px 100px;
+  padding:
+    40px
+    30px
+    100px;
+
+  z-index: 5;
 }
 
 
@@ -272,6 +286,7 @@
   max-width: 700px;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
@@ -289,13 +304,50 @@
 @keyframes sceneIn {
   from {
     opacity: 0;
-    transform: translateY(25px) scale(0.97);
+
+    transform:
+      translateY(25px)
+      scale(0.97);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+}
+
+
+/* =========================================================
+   LOGO TRANSPARENT / CLEAN
+   ========================================================= */
+
+/*
+   Class ini dipakai untuk logo Fish It dan PPK.
+
+   Jika file PNG sudah memiliki transparency,
+   background akan benar-benar mengikuti opening.
+
+   Kita tidak menggunakan background-color
+   pada logo agar tidak muncul kotak.
+*/
+
+.opening-transparent-logo {
+  background: transparent !important;
+
+  background-color: transparent !important;
+
+  border: 0 !important;
+
+  outline: 0 !important;
+
+  box-shadow: none;
+
+  object-fit: contain;
+
+  isolation: isolate;
 }
 
 
@@ -310,6 +362,7 @@
   height: 190px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -325,7 +378,9 @@
   width: calc(100% + 20px);
   height: calc(100% + 20px);
 
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
 
   border-radius: 50%;
 
@@ -349,12 +404,14 @@
 
   border-radius: 50%;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
   background: #ffffff;
 
   box-shadow:
-    0 0 12px rgba(255, 255, 255, 0.8);
+    0 0 12px
+    rgba(255, 255, 255, 0.8);
 }
 
 .opening-logo-ring-two {
@@ -378,7 +435,8 @@
   background: #36ff9a;
 
   box-shadow:
-    0 0 12px rgba(40, 255, 150, 0.7);
+    0 0 12px
+    rgba(40, 255, 150, 0.7);
 }
 
 @keyframes ringSpin {
@@ -401,6 +459,11 @@
   }
 }
 
+
+/* =========================================================
+   FISH IT LOGO
+   ========================================================= */
+
 .opening-fishit-logo {
   position: relative;
 
@@ -411,11 +474,28 @@
 
   object-fit: contain;
 
+  background: transparent !important;
+
+  border: none;
+
+  outline: none;
+
   animation:
     logoPulse
     3s
     ease-in-out
     infinite;
+
+  /*
+    Shadow hanya dari bentuk logo.
+    Tidak memberi background kotak.
+  */
+
+  filter:
+    drop-shadow(
+      0 0 18px
+      rgba(40, 255, 150, 0.10)
+    );
 }
 
 @keyframes logoPulse {
@@ -460,7 +540,8 @@
 
   letter-spacing: 7px;
 
-  color: rgba(255, 255, 255, 0.45);
+  color:
+    rgba(255, 255, 255, 0.45);
 
   text-transform: uppercase;
 }
@@ -474,7 +555,8 @@
 
   line-height: 1.6;
 
-  color: rgba(255, 255, 255, 0.45);
+  color:
+    rgba(255, 255, 255, 0.45);
 
   letter-spacing: 0.5px;
 }
@@ -493,7 +575,8 @@
 
   letter-spacing: 5px;
 
-  color: rgba(255, 255, 255, 0.4);
+  color:
+    rgba(255, 255, 255, 0.4);
 
   text-transform: uppercase;
 }
@@ -505,6 +588,7 @@
   height: 175px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -549,7 +633,8 @@
   background: #ffffff;
 
   box-shadow:
-    0 0 12px rgba(255, 255, 255, 0.7);
+    0 0 12px
+    rgba(255, 255, 255, 0.7);
 }
 
 @keyframes ppkRing {
@@ -569,6 +654,11 @@
   }
 }
 
+
+/* =========================================================
+   PPK LOGO
+   ========================================================= */
+
 .opening-ppk-logo {
   position: relative;
 
@@ -578,10 +668,28 @@
   height: 145px;
 
   object-fit: contain;
+
+  background: transparent !important;
+
+  border: none;
+
+  outline: none;
+
+  filter:
+    drop-shadow(
+      0 0 18px
+      rgba(255, 255, 255, 0.08)
+    );
 }
+
+
+/* =========================================================
+   LINE
+   ========================================================= */
 
 .opening-line {
   width: 70px;
+
   height: 1px;
 
   margin-top: 25px;
@@ -620,6 +728,7 @@
 
 .opening-dev-line {
   width: 55px;
+
   height: 1px;
 
   margin:
@@ -645,13 +754,16 @@
   min-height: 110px;
 
   display: flex;
+
   align-items: center;
 
   box-sizing: border-box;
 
   gap: 22px;
 
-  padding: 18px 22px;
+  padding:
+    18px
+    22px;
 
   border:
     1px solid
@@ -667,11 +779,14 @@
     );
 
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35);
+    0 20px 60px
+    rgba(0, 0, 0, 0.35);
 
-  backdrop-filter: blur(20px);
+  backdrop-filter:
+    blur(20px);
 
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter:
+    blur(20px);
 
   overflow: hidden;
 
@@ -707,12 +822,16 @@
 @keyframes developerCardIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+
+    transform:
+      translateY(20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
   }
 }
 
@@ -730,6 +849,7 @@
   height: 76px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 }
@@ -787,10 +907,12 @@
 
   border-radius: 50%;
 
-  background: #101512;
+  background:
+    #101512;
 
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3);
+    0 8px 25px
+    rgba(0, 0, 0, 0.3);
 }
 
 .opening-dev-avatar-fallback {
@@ -802,6 +924,7 @@
   height: 76px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -834,6 +957,7 @@
   flex: 1;
 
   display: flex;
+
   flex-direction: column;
 
   align-items: flex-start;
@@ -852,7 +976,8 @@
 
   letter-spacing: 3px;
 
-  color: rgba(255, 255, 255, 0.36);
+  color:
+    rgba(255, 255, 255, 0.36);
 
   text-transform: uppercase;
 }
@@ -886,7 +1011,8 @@
 
   font-weight: 600;
 
-  color: rgba(40, 255, 150, 0.8);
+  color:
+    rgba(40, 255, 150, 0.8);
 
   letter-spacing: 0.3px;
 }
@@ -903,16 +1029,22 @@
   bottom: 38px;
 
   width: 300px;
-  max-width: calc(100% - 50px);
+
+  max-width:
+    calc(100% - 50px);
 
   display: flex;
+
   flex-direction: column;
 
   align-items: center;
 
   gap: 12px;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
+
+  z-index: 20;
 }
 
 .opening-loading-line {
@@ -947,7 +1079,8 @@
     );
 
   box-shadow:
-    0 0 10px rgba(40, 255, 150, 0.4);
+    0 0 10px
+    rgba(40, 255, 150, 0.4);
 
   animation:
     loadingProgress
@@ -958,15 +1091,18 @@
 
 @keyframes loadingProgress {
   0% {
-    transform: translateX(-120%);
+    transform:
+      translateX(-120%);
   }
 
   50% {
-    transform: translateX(170%);
+    transform:
+      translateX(170%);
   }
 
   100% {
-    transform: translateX(300%);
+    transform:
+      translateX(300%);
   }
 }
 
@@ -977,7 +1113,8 @@
 
   letter-spacing: 4px;
 
-  color: rgba(255, 255, 255, 0.3);
+  color:
+    rgba(255, 255, 255, 0.3);
 
   text-transform: uppercase;
 }
@@ -987,14 +1124,17 @@
    CLOSING CONTENT
    ========================================================= */
 
-.website-opening.opening-closing .opening-content {
-  transform: scale(1.025);
+.website-opening.opening-closing
+  .opening-content {
+  transform:
+    scale(1.025);
 
   transition:
     transform 1s ease;
 }
 
-.website-opening.opening-closing .opening-bottom {
+.website-opening.opening-closing
+  .opening-bottom {
   opacity: 0;
 
   transition:
@@ -1003,10 +1143,214 @@
 
 
 /* =========================================================
+   START SCREEN
+   ========================================================= */
+
+.opening-start-screen {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  z-index: 10;
+}
+
+.opening-start-logo-wrap {
+  position: relative;
+
+  width: 150px;
+  height: 150px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 28px;
+}
+
+.opening-start-logo {
+  width: 105px;
+  height: 105px;
+
+  object-fit: contain;
+
+  position: relative;
+
+  z-index: 3;
+
+  background:
+    transparent !important;
+
+  border: none;
+
+  outline: none;
+
+  filter:
+    drop-shadow(
+      0 0 25px
+      rgba(255, 255, 255, 0.18)
+    );
+}
+
+
+/*
+   Pastikan logo pada START SCREEN
+   tidak memiliki background CSS.
+*/
+
+.opening-start-logo.opening-transparent-logo {
+  background:
+    transparent !important;
+
+  background-color:
+    transparent !important;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   START TITLE
+   ========================================================= */
+
+.opening-start-title {
+  font-size: 42px;
+
+  font-weight: 900;
+
+  letter-spacing: 8px;
+
+  line-height: 1;
+}
+
+.opening-start-subtitle {
+  margin-top: 10px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 6px;
+
+  opacity: 0.55;
+}
+
+
+/* =========================================================
+   START BUTTON
+   ========================================================= */
+
+.opening-start-button {
+  margin-top: 42px;
+
+  min-width: 220px;
+
+  height: 54px;
+
+  padding:
+    0
+    28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.opening-start-button:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    rgba(255, 255, 255, 0.12);
+
+  border-color:
+    rgba(255, 255, 255, 0.32);
+
+  box-shadow:
+    0 10px 35px
+    rgba(0, 0, 0, 0.25);
+}
+
+.opening-start-button:active {
+  transform:
+    translateY(0);
+}
+
+.opening-start-button:focus-visible {
+  outline:
+    2px solid
+    rgba(40, 255, 150, 0.7);
+
+  outline-offset: 4px;
+}
+
+.opening-start-icon {
+  font-size: 11px;
+}
+
+.opening-start-hint {
+  margin-top: 16px;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  opacity: 0.35;
+}
+
+
+/* =========================================================
    MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
+
   .opening-content {
     padding:
       30px
@@ -1038,6 +1382,21 @@
     width: 100%;
     max-width: 430px;
   }
+
+  .opening-start-logo-wrap {
+    width: 140px;
+    height: 140px;
+  }
+
+  .opening-start-logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .opening-start-title {
+    font-size: 38px;
+    letter-spacing: 6px;
+  }
 }
 
 
@@ -1046,6 +1405,7 @@
    ========================================================= */
 
 @media (max-width: 520px) {
+
   .opening-content {
     padding:
       20px
@@ -1083,19 +1443,16 @@
 
   .opening-title {
     font-size: 36px;
-
     letter-spacing: 5px;
   }
 
   .opening-subtitle {
     font-size: 9px;
-
     letter-spacing: 4px;
   }
 
   .opening-description {
     max-width: 300px;
-
     font-size: 12px;
   }
 
@@ -1111,7 +1468,6 @@
 
   .opening-dev-title {
     font-size: 32px;
-
     letter-spacing: 3px;
   }
 
@@ -1120,7 +1476,9 @@
 
     gap: 15px;
 
-    padding: 14px 15px;
+    padding:
+      14px
+      15px;
 
     border-radius: 17px;
   }
@@ -1150,13 +1508,11 @@
 
   .opening-dev-info span {
     font-size: 7px;
-
     letter-spacing: 2px;
   }
 
   .opening-dev-info strong {
     max-width: 190px;
-
     font-size: 17px;
   }
 
@@ -1167,13 +1523,45 @@
   .opening-bottom {
     bottom: 23px;
 
-    width: calc(100% - 40px);
+    width:
+      calc(100% - 40px);
   }
 
   .opening-loading-text {
     font-size: 7px;
-
     letter-spacing: 3px;
+  }
+
+  .opening-start-logo-wrap {
+    width: 125px;
+    height: 125px;
+
+    margin-bottom: 22px;
+  }
+
+  .opening-start-logo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .opening-start-title {
+    font-size: 32px;
+    letter-spacing: 5px;
+  }
+
+  .opening-start-subtitle {
+    font-size: 9px;
+    letter-spacing: 4px;
+  }
+
+  .opening-start-button {
+    min-width: 205px;
+
+    height: 50px;
+
+    margin-top: 34px;
+
+    font-size: 11px;
   }
 }
 
@@ -1183,6 +1571,7 @@
    ========================================================= */
 
 @media (max-width: 360px) {
+
   .opening-logo-wrap {
     width: 110px;
     height: 110px;
@@ -1195,7 +1584,6 @@
 
   .opening-title {
     font-size: 30px;
-
     letter-spacing: 3px;
   }
 
@@ -1216,7 +1604,8 @@
   .opening-dev-card {
     gap: 12px;
 
-    padding: 12px;
+    padding:
+      12px;
   }
 
   .opening-dev-avatar-wrap {
@@ -1235,6 +1624,38 @@
 
     font-size: 15px;
   }
+
+  .opening-start-logo-wrap {
+    width: 110px;
+    height: 110px;
+  }
+
+  .opening-start-logo {
+    width: 82px;
+    height: 82px;
+  }
+
+  .opening-start-title {
+    font-size: 28px;
+    letter-spacing: 3px;
+  }
+
+  .opening-start-subtitle {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .opening-start-button {
+    min-width: 190px;
+
+    height: 48px;
+
+    padding:
+      0
+      20px;
+
+    font-size: 10px;
+  }
 }
 
 
@@ -1243,6 +1664,7 @@
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+
   .opening-glow,
   .opening-particle,
   .opening-logo-ring,
@@ -1256,130 +1678,7 @@
   }
 
   .website-opening {
-    transition: opacity 0.3s ease;
+    transition:
+      opacity 0.3s ease;
   }
-}
-
-/* =========================================================
-   START SCREEN
-   ========================================================= */
-
-.opening-start-screen {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  z-index: 10;
-}
-
-.opening-start-logo-wrap {
-  position: relative;
-
-  width: 150px;
-  height: 150px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 28px;
-}
-
-.opening-start-logo {
-  width: 105px;
-  height: 105px;
-
-  object-fit: contain;
-
-  position: relative;
-  z-index: 3;
-
-  filter:
-    drop-shadow(0 0 25px rgba(255, 255, 255, 0.18));
-}
-
-.opening-start-title {
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 8px;
-  line-height: 1;
-}
-
-.opening-start-subtitle {
-  margin-top: 10px;
-
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 6px;
-
-  opacity: 0.55;
-}
-
-.opening-start-button {
-  margin-top: 42px;
-
-  min-width: 220px;
-  height: 54px;
-
-  padding: 0 28px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
-
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 2px;
-
-  cursor: pointer;
-
-  backdrop-filter: blur(14px);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.opening-start-button:hover {
-  transform: translateY(-3px);
-
-  background: rgba(255, 255, 255, 0.12);
-
-  border-color: rgba(255, 255, 255, 0.32);
-
-  box-shadow:
-    0 10px 35px rgba(0, 0, 0, 0.25);
-}
-
-.opening-start-button:active {
-  transform: translateY(0);
-}
-
-.opening-start-icon {
-  font-size: 11px;
-}
-
-.opening-start-hint {
-  margin-top: 16px;
-
-  font-size: 10px;
-  letter-spacing: 2px;
-
-  opacity: 0.35;
 }
