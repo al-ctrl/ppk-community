@@ -51,7 +51,7 @@ const startWebsite = async () => {
       audio.preload = "auto";
 
       // Mulai dari 00:18
-      audio.currentTime = 13;
+      audio.currentTime = 132;
 
       // Play dulu dengan volume 0
       audio.volume = 0;
@@ -85,7 +85,7 @@ const startWebsite = async () => {
       <audio
         ref={audioRef}
         id="global-background-music"
-        src="/music/lagu.mp3"
+        src="/music/lagu1.mp3"
         preload="auto"
         loop
         playsInline
