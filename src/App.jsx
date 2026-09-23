@@ -382,6 +382,40 @@ function formatEventTime(date) {
 }
 
 // =========================================================
+// EVENT BANNER HELPERS
+// =========================================================
+
+function normalizeEventBannerUrl(value) {
+  if (!value) return "";
+
+  if (typeof value === "object") {
+    value = value.url || value.src || value.path || value.location || value.file || value.href || "";
+  }
+
+  const url = String(value).trim();
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  if (/^data:image\//i.test(url)) return url;
+  if (url.startsWith("//")) return `${window.location.protocol}${url}`;
+  if (url.startsWith("/")) return `${API_URL}${url}`;
+  return `${API_URL}/${url.replace(/^\/+/, "")}`;
+}
+
+function getEventBanner(event) {
+  if (!event || typeof event !== "object") return "";
+  const candidates = [
+    event.banner, event.bannerUrl, event.bannerURL, event.bannerImage, event.banner_image,
+    event.image, event.imageUrl, event.imageURL, event.cover, event.coverImage, event.coverUrl,
+    event.thumbnail, event.thumbnailUrl, event.poster, event.posterUrl,
+  ];
+  for (const candidate of candidates) {
+    const normalized = normalizeEventBannerUrl(candidate);
+    if (normalized) return normalized;
+  }
+  return "";
+}
+
+// =========================================================
 // EVENT STATUS HELPERS
 // =========================================================
 
@@ -890,14 +924,29 @@ function useEvents() {
       const result =
         await response.json();
 
-      const nextEvents =
+      const rawEvents =
         Array.isArray(result)
           ? result
-          : Array.isArray(
-              result?.events
-            )
+          : Array.isArray(result?.events)
           ? result.events
           : [];
+
+      const nextEvents = rawEvents.map((event, index) => {
+        const banner = getEventBanner(event);
+        const normalized = { ...event, banner };
+
+        console.log(`[EVENTS] Event #${index + 1}:`, {
+          id: event?.id || event?._id,
+          title: event?.title || event?.name,
+          originalBanner: event?.banner,
+          detectedBanner: banner,
+        });
+
+        return normalized;
+      });
+
+      console.log("[EVENTS] Raw API response:", result);
+      console.log("[EVENTS] Normalized events:", nextEvents);
 
       setEvents(nextEvents);
       setError(null);
@@ -1873,8 +1922,7 @@ function EventCard({
     ? event.rules
     : [];
 
-  const banner =
-    event?.banner || "";
+  const banner = getEventBanner(event);
 
   const statusLabel = {
     live: "LIVE NOW",
@@ -1893,9 +1941,22 @@ function EventCard({
         <div className="event-banner-container">
           <img
             src={banner}
-            alt={title}
+            alt={`${title} banner`}
             loading="lazy"
+            onLoad={() => {
+              console.log("[EVENT BANNER] Loaded:", banner);
+            }}
+            onError={(e) => {
+              console.error("[EVENT BANNER] Failed:", banner);
+              e.currentTarget.style.display = "none";
+              const fallback = e.currentTarget.parentElement?.querySelector(".event-banner-fallback");
+              if (fallback) fallback.style.display = "flex";
+            }}
           />
+          <div className="event-banner-fallback" style={{ display: "none" }}>
+            <CalendarDays size={32} />
+            <span>{title}</span>
+          </div>
         </div>
       )}
 
@@ -3276,6 +3337,28 @@ function ResponsiveStyles() {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+
+      .event-banner-fallback {
+        position: absolute;
+        inset: 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        text-align: center;
+        background: radial-gradient(circle at center, rgba(40, 180, 150, 0.18), transparent 60%), rgba(255, 255, 255, 0.035);
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .event-banner-fallback span {
+        max-width: 90%;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
       }
 
       .event-card-top {

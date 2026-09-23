@@ -1,3 +1,4 @@
+
 import "dotenv/config";
 
 import fs from "fs";
@@ -330,6 +331,66 @@ function normalizeChallenge(
 }
 
 // ============================================================
+// NORMALIZE EVENT BANNER
+// ============================================================
+
+function normalizeBanner(value) {
+  if (!value) return "";
+
+  if (typeof value === "object") {
+    value =
+      value.url ||
+      value.src ||
+      value.path ||
+      value.location ||
+      value.file ||
+      value.href ||
+      "";
+  }
+
+  return String(value).trim();
+}
+
+function getEventBanner(event = {}) {
+  if (!event || typeof event !== "object") {
+    return "";
+  }
+
+  const candidates = [
+    event.banner,
+    event.bannerUrl,
+    event.bannerURL,
+    event.bannerImage,
+    event.banner_image,
+
+    event.image,
+    event.imageUrl,
+    event.imageURL,
+
+    event.cover,
+    event.coverImage,
+    event.coverUrl,
+
+    event.thumbnail,
+    event.thumbnailUrl,
+
+    event.poster,
+    event.posterUrl,
+  ];
+
+  for (const candidate of candidates) {
+    const banner =
+      normalizeBanner(candidate);
+
+    if (banner) {
+      return banner;
+    }
+  }
+
+  return "";
+}
+
+// ============================================================
 // NORMALIZE EVENT
 // ============================================================
 
@@ -349,6 +410,39 @@ function normalizeEvent(
     ...(existing || {}),
     ...source,
   };
+
+  // ==========================================================
+  // BANNER
+  // ==========================================================
+  //
+  // Semua kemungkinan field banner akan disatukan
+  // menjadi field utama:
+  //
+  // result.banner
+  //
+  // Contoh yang didukung:
+  // banner
+  // bannerUrl
+  // bannerURL
+  // bannerImage
+  // banner_image
+  // image
+  // imageUrl
+  // cover
+  // coverImage
+  // thumbnail
+  // poster
+  //
+  // ==========================================================
+
+  result.banner = getEventBanner({
+    ...(existing || {}),
+    ...source,
+  });
+
+  // ==========================================================
+  // CHALLENGES
+  // ==========================================================
 
   if (
     Array.isArray(
@@ -372,16 +466,32 @@ function normalizeEvent(
     result.challenges = [];
   }
 
+  // ==========================================================
+  // ID
+  // ==========================================================
+
   if (!result.id) {
     result.id =
       generateId("event");
   }
 
+  // ==========================================================
+  // CREATED AT
+  // ==========================================================
+
   if (!result.createdAt) {
     result.createdAt = now();
   }
 
+  // ==========================================================
+  // UPDATED AT
+  // ==========================================================
+
   result.updatedAt = now();
+
+  // ==========================================================
+  // STATUS
+  // ==========================================================
 
   if (!result.status) {
     result.status = "active";
@@ -499,6 +609,9 @@ function updateEvent(
       payload,
       existing
     );
+
+  // ID dan createdAt event lama
+  // tidak boleh berubah.
 
   updated.id =
     existing.id;
