@@ -85,7 +85,7 @@ const startWebsite = async () => {
       <audio
         ref={audioRef}
         id="global-background-music"
-        src="/music/lagu1.mp3"
+        src="/music/lagu2.mp3"
         preload="auto"
         loop
         playsInline
