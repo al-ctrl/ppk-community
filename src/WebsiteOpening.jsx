@@ -1,4 +1,6 @@
+
 import { useEffect, useState } from "react";
+
 import "./Opening.css";
 
 const scenes = [
@@ -72,7 +74,6 @@ export default function WebsiteOpening({
             "[OPENING] Gagal mengambil developer:",
             response.status
           );
-
           return;
         }
 
@@ -111,6 +112,7 @@ export default function WebsiteOpening({
          * Jika backend tidak memberikan URL foto,
          * gunakan endpoint avatar Telegram.
          */
+
         if (!avatar && data.hasPhoto !== false) {
           avatar = apiUrl(
             `/api/telegram/avatar/${DEVELOPER_USERNAME}?t=${Date.now()}`
@@ -122,6 +124,7 @@ export default function WebsiteOpening({
          * seperti /api/telegram/avatar/xxx,
          * ubah menjadi URL API lengkap.
          */
+
         if (
           avatar &&
           avatar.startsWith("/")
@@ -253,12 +256,13 @@ export default function WebsiteOpening({
         <div className="opening-start-screen">
           <div className="opening-start-logo-wrap">
             <div className="opening-logo-ring" />
+
             <div className="opening-logo-ring opening-logo-ring-two" />
 
             <img
               src="/logos/fish-it.png"
               alt="Fish It"
-              className="opening-start-logo"
+              className="opening-start-logo opening-transparent-logo"
             />
           </div>
 
@@ -308,7 +312,9 @@ export default function WebsiteOpening({
     >
       <div className="opening-background">
         <div className="opening-glow opening-glow-one" />
+
         <div className="opening-glow opening-glow-two" />
+
         <div className="opening-grid" />
 
         <div className="opening-particles">
@@ -328,21 +334,25 @@ export default function WebsiteOpening({
 
       <div className="opening-content">
 
-        {/* ================================================== */}
-        {/* FISH IT */}
-        {/* ================================================== */}
+        {/* ==================================================
+            FISH IT
+        ================================================== */}
 
         {scene === 0 && (
           <section className="opening-scene opening-fishit">
+
             <div className="opening-logo-wrap">
+
               <div className="opening-logo-ring" />
+
               <div className="opening-logo-ring opening-logo-ring-two" />
 
               <img
                 src="/logos/fish-it.png"
                 alt="Fish It"
-                className="opening-fishit-logo"
+                className="opening-fishit-logo opening-transparent-logo"
               />
+
             </div>
 
             <div className="opening-title">
@@ -356,27 +366,31 @@ export default function WebsiteOpening({
             <div className="opening-description">
               Welcome to the Fish It Community
             </div>
+
           </section>
         )}
 
-        {/* ================================================== */}
-        {/* PPK */}
-        {/* ================================================== */}
+        {/* ==================================================
+            PPK
+        ================================================== */}
 
         {scene === 1 && (
           <section className="opening-scene opening-ppk">
+
             <div className="opening-small-label">
               PART OF
             </div>
 
             <div className="opening-ppk-logo-wrap">
+
               <div className="opening-ppk-ring" />
 
               <img
                 src="/logos/ppk.png"
                 alt="PPK"
-                className="opening-ppk-logo"
+                className="opening-ppk-logo opening-transparent-logo"
               />
+
             </div>
 
             <div className="opening-title">
@@ -388,15 +402,17 @@ export default function WebsiteOpening({
             <div className="opening-description">
               A community built together
             </div>
+
           </section>
         )}
 
-        {/* ================================================== */}
-        {/* DEVELOPER */}
-        {/* ================================================== */}
+        {/* ==================================================
+            DEVELOPER
+        ================================================== */}
 
         {scene === 2 && (
           <section className="opening-scene opening-developers">
+
             <div className="opening-small-label">
               DEVELOPED BY
             </div>
@@ -410,6 +426,7 @@ export default function WebsiteOpening({
             <div className="opening-dev-card">
 
               <div className="opening-dev-avatar-wrap">
+
                 <div className="opening-dev-avatar-ring" />
 
                 {developer.hasPhoto &&
@@ -446,9 +463,11 @@ export default function WebsiteOpening({
                       .toUpperCase()}
                   </div>
                 )}
+
               </div>
 
               <div className="opening-dev-info">
+
                 <span>
                   TELEGRAM DEVELOPER
                 </span>
@@ -460,6 +479,7 @@ export default function WebsiteOpening({
                 <small>
                   {developer.username}
                 </small>
+
               </div>
 
             </div>
@@ -467,26 +487,32 @@ export default function WebsiteOpening({
             <div className="opening-description">
               Creating the PPK Comunity Website
             </div>
+
           </section>
         )}
 
       </div>
 
-      {/* ================================================== */}
-      {/* BOTTOM */}
-      {/* ================================================== */}
+      {/* ==================================================
+          BOTTOM
+      ================================================== */}
 
       <div className="opening-bottom">
+
         <span className="opening-loading-line">
           <span className="opening-loading-progress" />
         </span>
 
         <span className="opening-loading-text">
           {scene === 0 && "INITIALIZING"}
+
           {scene === 1 && "CONNECTING"}
+
           {scene === 2 && "WELCOME"}
         </span>
+
       </div>
+
     </div>
   );
 }
