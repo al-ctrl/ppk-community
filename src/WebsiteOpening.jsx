@@ -386,7 +386,7 @@ export default function WebsiteOpening({
               <div className="opening-ppk-ring" />
 
               <img
-                src="/logos/ppk.png"
+                src="/logos/ppk1.png"
                 alt="PPK"
                 className="opening-ppk-logo opening-transparent-logo"
               />
