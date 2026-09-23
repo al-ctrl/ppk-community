@@ -72,25 +72,7 @@ const ADMINS = [
       "Developer dan pengelola sistem PPK.",
   },
   {
-    username: "@ponakanburhan",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
     username: "@raxxyxyz",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
-    username: "@haloeluna",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
-    username: "@bask4raa",
     role: "ADMIN",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
@@ -102,13 +84,25 @@ const ADMINS = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
+    username: "@cheiionlyy",
+    role: "ADMIN",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@haloeluna",
+    role: "ADMIN",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
     username: "@chilokei",
     role: "ADMIN",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@cheiionlyy",
+    username: "@bask4raa",
     role: "ADMIN",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
@@ -126,38 +120,83 @@ const ADMINS = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@Bossslanaa",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
-    username: "@ar4ppp",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
-    username: "@zeynfcku",
-    role: "ADMIN",
-    description:
-      "Mengelola komunitas dan aktivitas PPK.",
-  },
-  {
     username: "@poizy1",
     role: "ADMIN",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
+]
+
+const ELDER = [
+  {
+    username: "@ponakanburhan",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@Bossslanaa",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@ar4ppp",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@zeynfcku",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
   {
     username: "@Likkxyz",
-    role: "ADMIN",
+    role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
     username: "@lgirapuh",
-    role: "ADMIN",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@hikelaa",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@ratuswag",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@kepindikss",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@pacalnaakeonho",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@ngavrej",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@astagabrn",
+    role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
@@ -1083,6 +1122,13 @@ function Hero({ data }) {
             className="button button-secondary"
           >
             Lihat Games
+          </a>
+
+          <a
+            href="#events"
+            className="button button-secondary"
+          >
+            Lihat Event
           </a>
         </div>
 
@@ -2796,6 +2842,31 @@ function Team() {
             )}
           </div>
         </div>
+
+        <div className="team-block elder-block">
+          <div className="team-block-heading">
+            <Users size={18} />
+
+            <span>
+              ELDER / MEMBER CLAN —{" "}
+              {ELDER.length} MEMBERS
+            </span>
+          </div>
+
+          <div className="admin-grid elder-grid">
+            {ELDER.map(
+              (
+                member,
+                index
+              ) => (
+                <TeamMember
+                  key={`${member.username}-${index}`}
+                  member={member}
+                />
+              )
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -3132,6 +3203,605 @@ function Footer() {
 }
 
 // =========================================================
+// RESPONSIVE / VISUAL OVERRIDES
+// =========================================================
+
+function ResponsiveStyles() {
+  return (
+    <style>{`
+      /* Touch / button behavior */
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      button:focus-visible,
+      a:focus-visible {
+        outline: 2px solid rgba(80, 255, 187, 0.75);
+        outline-offset: 3px;
+      }
+
+      /* Event presentation */
+      .events-section {
+        overflow: hidden;
+      }
+
+      .events-heading {
+        align-items: end;
+        gap: 32px;
+      }
+
+      .events-heading-right {
+        max-width: 390px;
+      }
+
+      .events-grid {
+        align-items: start;
+        gap: 22px;
+      }
+
+      .event-card {
+        position: relative;
+        min-width: 0;
+        overflow: hidden;
+        border-radius: 24px;
+        isolation: isolate;
+      }
+
+      .event-card-glow {
+        pointer-events: none;
+      }
+
+      .event-banner-container {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        overflow: hidden;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .event-banner-container::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 48%, rgba(3, 11, 13, 0.42));
+        pointer-events: none;
+      }
+
+      .event-banner-container img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .event-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .event-status,
+      .event-date-small {
+        min-height: 30px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 7px 11px;
+        white-space: nowrap;
+      }
+
+      .event-date-small {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .event-icon {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        margin: 18px 0 14px;
+      }
+
+      .event-content h3 {
+        margin: 0;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
+      }
+
+      .event-content p,
+      .event-challenge-description {
+        overflow-wrap: anywhere;
+      }
+
+      .event-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .event-meta-item {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 12px;
+        border-radius: 13px;
+      }
+
+      .event-meta-item span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .event-rules-section,
+      .event-challenges {
+        margin-top: 18px;
+      }
+
+      .event-rules-section ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      .event-rules-section li {
+        overflow-wrap: anywhere;
+      }
+
+      .event-challenge-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .event-challenge {
+        min-width: 0;
+        border-radius: 16px;
+      }
+
+      .event-challenge-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .event-challenge-main {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .event-challenge-main strong {
+        overflow-wrap: anywhere;
+      }
+
+      .event-challenge-image-container {
+        width: 100%;
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 13px;
+      }
+
+      .event-challenge-image-container img {
+        display: block;
+        width: 100%;
+        max-height: 340px;
+        object-fit: cover;
+      }
+
+      .event-custom-items > div {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .event-custom-item {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .event-custom-item img {
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .event-custom-item > div {
+        min-width: 0;
+      }
+
+      .event-custom-item small {
+        overflow-wrap: anywhere;
+      }
+
+      .event-winner-slots {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .event-winner-slot {
+        min-width: 0;
+      }
+
+      .event-winner-top,
+      .event-winner-identity {
+        min-width: 0;
+      }
+
+      .event-winner-identity strong,
+      .event-winner-prize span,
+      .event-winner-claim-row a,
+      .event-winner-claim-row strong {
+        overflow-wrap: anywhere;
+      }
+
+      .event-winner-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .event-winner-actions a {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+      }
+
+      .event-card-footer {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .event-card-footer span {
+        overflow-wrap: anywhere;
+      }
+
+      .events-sync-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+      }
+
+      /* Elder / clan-member category */
+      .elder-block {
+        margin-top: 24px;
+      }
+
+      .elder-grid .team-card {
+        min-width: 0;
+      }
+
+      /* General touch targets */
+      .button,
+      .nav-join,
+      .dashboard-link,
+      .game-card-footer,
+      .event-card-footer,
+      .menu-button,
+      .faq-item,
+      .event-winner-profile-button,
+      .event-winner-claim-button {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      @media (max-width: 900px) {
+        .container {
+          width: min(100% - 32px, 760px);
+        }
+
+        .events-heading,
+        .community-heading,
+        .team-heading,
+        .games-heading,
+        .crew-heading {
+          gap: 20px;
+        }
+
+        .events-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .event-card {
+          width: 100%;
+        }
+
+        .admin-grid,
+        .member-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        html {
+          scroll-padding-top: 76px;
+        }
+
+        .container {
+          width: min(100% - 24px, 560px);
+        }
+
+        .nav-shell {
+          min-height: 64px;
+          padding-inline: 12px;
+        }
+
+        .logo {
+          min-width: 0;
+        }
+
+        .logo-copy small {
+          max-width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .nav-status {
+          display: none;
+        }
+
+        .menu-button {
+          width: 44px;
+          height: 44px;
+          flex: 0 0 44px;
+          display: grid;
+          place-items: center;
+        }
+
+        .nav-links {
+          left: 12px;
+          right: 12px;
+          width: auto;
+          max-height: calc(100vh - 82px);
+          overflow-y: auto;
+          padding: 10px;
+          border-radius: 18px;
+        }
+
+        .nav-links a {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: 11px 12px;
+          border-radius: 12px;
+        }
+
+        .nav-links .nav-join {
+          justify-content: center;
+          margin-top: 4px;
+        }
+
+        .hero-actions {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .hero-actions .button {
+          width: 100%;
+          min-height: 46px;
+          justify-content: center;
+        }
+
+        .hero-metrics {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .metric-divider {
+          display: none;
+        }
+
+        .hero-metric {
+          min-width: 0;
+        }
+
+        .hero-metric strong {
+          font-size: clamp(20px, 7vw, 30px);
+        }
+
+        .hero-metric span {
+          font-size: 8px;
+          letter-spacing: 0.1em;
+        }
+
+        .games-grid,
+        .member-grid,
+        .admin-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .event-card {
+          border-radius: 18px;
+        }
+
+        .event-banner-container {
+          aspect-ratio: 16 / 9;
+          border-radius: 14px;
+          margin-bottom: 15px;
+        }
+
+        .event-card-top {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .event-status,
+        .event-date-small {
+          white-space: normal;
+          width: fit-content;
+          max-width: 100%;
+        }
+
+        .event-icon {
+          width: 46px;
+          height: 46px;
+          margin: 14px 0 12px;
+        }
+
+        .event-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .event-custom-items > div {
+          grid-template-columns: 1fr;
+        }
+
+        .event-winner-actions {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        .event-winner-actions a {
+          width: 100%;
+        }
+
+        .event-winner-top {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 7px;
+        }
+
+        .event-winner-prize {
+          align-items: flex-start;
+        }
+
+        .event-card-footer {
+          align-items: flex-start;
+        }
+
+        .event-card-footer svg {
+          flex: 0 0 auto;
+        }
+
+        .team-block-heading {
+          align-items: flex-start;
+        }
+
+        .team-block-heading span {
+          overflow-wrap: anywhere;
+        }
+
+        .team-card {
+          min-width: 0;
+        }
+
+        .team-info h3,
+        .team-info strong,
+        .team-info p {
+          overflow-wrap: anywhere;
+        }
+
+        .faq-item {
+          width: 100%;
+          min-height: 54px;
+        }
+
+        .faq-question {
+          grid-template-columns: 28px minmax(0, 1fr) 32px;
+          gap: 8px;
+        }
+
+        .faq-question strong {
+          overflow-wrap: anywhere;
+        }
+
+        .footer-navigation a {
+          min-height: 42px;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* Make every interactive control comfortable for thumbs. */
+        .button,
+        .dashboard-link,
+        .game-card-footer,
+        .event-card-footer,
+        .event-winner-profile-button,
+        .event-winner-claim-button {
+          min-height: 44px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .container {
+          width: calc(100% - 20px);
+        }
+
+        .nav-shell {
+          padding-inline: 10px;
+        }
+
+        .logo-symbol {
+          width: 36px;
+          height: 36px;
+        }
+
+        .logo-copy strong {
+          font-size: 17px;
+        }
+
+        .logo-copy small {
+          display: none;
+        }
+
+        .hero-metrics {
+          grid-template-columns: 1fr;
+          padding-top: 8px;
+        }
+
+        .hero-metric {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 7px 0;
+        }
+
+        .hero-metric strong {
+          font-size: 24px;
+        }
+
+        .event-content h3 {
+          font-size: 24px;
+        }
+      }
+    `}</style>
+  );
+}
+
+// =========================================================
 // APP
 // =========================================================
 
@@ -3152,18 +3822,19 @@ export default function App() {
 
   return (
     <>
+      <ResponsiveStyles />
       <Navbar connected={connected} />
 
       <main>
         <Hero data={data} />
         <About />
         <Games />
-        <Events />
         <Community
           data={data}
           loading={loading}
         />
         <Team />
+        <Events />
         <Activity />
         <FAQ />
       </main>

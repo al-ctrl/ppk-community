@@ -5982,3 +5982,552 @@ h3 em,
     gap: 12px;
   }
 }
+
+/* =========================================================
+   PPK — TEAM / ELDER + MOBILE FINAL ADJUSTMENT
+========================================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(102, 216, 180, 0.72);
+  outline-offset: 3px;
+}
+
+.team-block,
+.team-block-heading,
+.founder-list,
+.admin-grid,
+.elder-grid,
+.member-grid,
+.team-card,
+.team-info,
+.team-info-top {
+  min-width: 0;
+}
+
+.team-block-heading span,
+.team-info h3,
+.team-info p,
+.team-info strong,
+.team-role {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.elder-block {
+  position: relative;
+  min-width: 0;
+  margin-top: 28px;
+}
+
+.elder-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.elder-grid .team-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.elder-grid .team-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(102, 216, 180, 0.42),
+    transparent
+  );
+}
+
+.elder-grid .team-role {
+  color: var(--green);
+}
+
+.elder-grid .team-card:hover {
+  border-color: rgba(102, 216, 180, 0.24);
+}
+
+.button,
+.nav-join,
+.menu-button,
+.dashboard-link,
+.event-winner-profile-button,
+.event-winner-claim-button {
+  min-height: 44px;
+}
+
+.menu-button {
+  min-width: 44px;
+}
+
+@media (max-width: 900px) {
+  .elder-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: min(calc(100% - 24px), var(--container));
+  }
+
+  .nav-shell {
+    width: calc(100% - 24px);
+  }
+
+  .nav-links {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav-links a {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  .admin-grid,
+  .elder-grid,
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .elder-block {
+    margin-top: 24px;
+  }
+
+  .team-card {
+    width: 100%;
+  }
+
+  .faq-question {
+    grid-template-columns: 30px minmax(0, 1fr) 32px;
+    gap: 8px;
+  }
+
+  .faq-question strong {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  .nav-shell {
+    width: calc(100% - 20px);
+  }
+
+  .logo-symbol {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-copy small {
+    display: none;
+  }
+
+  .menu-button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .team-card {
+    padding: 10px 11px;
+  }
+
+  .team-info h3 {
+    font-size: 18px;
+  }
+
+  .team-info p {
+    font-size: 9px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 350px) {
+  .container {
+    width: calc(100% - 16px);
+  }
+
+  .nav-shell {
+    width: calc(100% - 16px);
+  }
+
+  .menu-button {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+  }
+
+  .hero-actions .button {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   EVENT — FINAL OVERRIDE
+   SELALU DITARUH PALING BAWAH
+========================================================= */
+
+.events-section {
+  overflow: hidden;
+}
+
+.events-heading,
+.events-heading-right,
+.events-grid,
+.event-card,
+.event-content,
+.event-meta,
+.event-challenges,
+.event-winner-slots,
+.event-card-footer {
+  min-width: 0;
+}
+
+.event-card {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.event-banner-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.event-banner-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.event-card:hover .event-banner-container img {
+  transform: scale(1.025);
+}
+
+.event-banner-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 48%,
+    rgba(3, 12, 14, 0.38)
+  );
+}
+
+.event-card-top {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.event-status,
+.event-date-small {
+  max-width: 100%;
+}
+
+.event-date-small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-content h3,
+.event-content p,
+.event-challenge-description,
+.event-winner-identity strong,
+.event-winner-claim-row a,
+.event-winner-claim-row strong {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.event-meta,
+.event-meta-item {
+  min-width: 0;
+}
+
+.event-meta-item span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.event-challenge,
+.event-challenge-header,
+.event-challenge-main {
+  min-width: 0;
+}
+
+.event-challenge {
+  overflow: hidden;
+}
+
+.event-challenge-main strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.event-challenge-image-container {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.event-challenge-image-container img {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.event-custom-items,
+.event-custom-item,
+.event-custom-item > div {
+  min-width: 0;
+}
+
+.event-custom-item small {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.event-winner-slots,
+.event-winner-slot,
+.event-winner-info,
+.event-winner-identity {
+  min-width: 0;
+}
+
+.event-winner-slot {
+  overflow: hidden;
+}
+
+.event-winner-identity strong {
+  min-width: 0;
+}
+
+.event-winner-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.event-winner-profile-button,
+.event-winner-claim-button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-card-footer {
+  min-width: 0;
+}
+
+.event-card-footer span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .events-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .events-heading-right {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .events-heading {
+    margin-bottom: 30px;
+  }
+
+  .events-heading h2 {
+    font-size: 34px;
+  }
+
+  .events-heading-right {
+    width: 100%;
+  }
+
+  .events-heading-right p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .event-card {
+    padding: 19px;
+  }
+
+  .event-banner-container {
+    aspect-ratio: 16 / 9;
+    border-radius: 13px;
+    margin-bottom: 15px;
+  }
+
+  .event-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event-status,
+  .event-date-small {
+    width: fit-content;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .event-icon {
+    width: 46px;
+    height: 46px;
+    margin: 22px 0 17px;
+  }
+
+  .event-content h3 {
+    font-size: 21px;
+  }
+
+  .event-content p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .event-meta {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .event-challenge {
+    grid-template-columns: 1fr;
+  }
+
+  .event-challenge-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .event-winner-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .event-winner-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .event-winner-profile-button,
+  .event-winner-claim-button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .event-card-footer {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .events-state {
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .event-card {
+    padding: 16px;
+  }
+
+  .event-status {
+    padding: 5px 7px;
+    font-size: 7px;
+  }
+
+  .event-date-small {
+    max-width: 115px;
+  }
+
+  .event-content h3 {
+    font-size: 19px;
+  }
+
+  .event-card-footer {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 350px) {
+  .event-card {
+    padding: 13px;
+  }
+
+  .event-content h3 {
+    font-size: 18px;
+  }
+
+  .event-banner-container {
+    border-radius: 10px;
+  }
+}
