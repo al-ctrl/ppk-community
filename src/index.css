@@ -5,11 +5,11 @@
 ========================================================= */
 
 :root {
-  --bg: #fa34cf;
-  --bg-soft: #e974cc;
-  --surface: #ce407b;
-  --surface-2: #e7446d;
-  --surface-3: #f70864;
+  --bg: #061114;
+  --bg-soft: #09191d;
+  --surface: #0c1d21;
+  --surface-2: #10272c;
+  --surface-3: #143238;
 
   --line: rgba(150, 219, 207, 0.12);
   --line-strong: rgba(150, 219, 207, 0.22);
@@ -18,9 +18,9 @@
   --text-soft: #a6bbb7;
   --text-muted: #718783;
 
-  --green: #66d8b4;
-  --green-light: #9af0d1;
-  --green-dark: #238b70;
+  --green: #ff9aee;
+  --green-light: #ff507b;
+  --green-dark: #ffbadd;
 
   --gold: #e5bd73;
   --danger: #ff7f7f;
