@@ -6,10 +6,10 @@
 
 :root {
   --bg: #fa34cf;
-  --bg-soft: #1d0915;
-  --surface: #210c21;
-  --surface-2: #27102c;
-  --surface-3: #381414;
+  --bg-soft: #e974cc;
+  --surface: #ce407b;
+  --surface-2: #e7446d;
+  --surface-3: #f70864;
 
   --line: rgba(150, 219, 207, 0.12);
   --line-strong: rgba(150, 219, 207, 0.22);
