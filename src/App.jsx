@@ -135,7 +135,7 @@ const ELDER = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@Bossslanaa",
+    username: "@Whoitz",
     role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
