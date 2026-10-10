@@ -120,7 +120,7 @@ const ADMINS = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@poizy1",
+    username: "@priapismuz",
     role: "ADMIN",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
@@ -135,7 +135,7 @@ const ELDER = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@Whoitz",
+    username: "@Whoitzz",
     role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
@@ -189,17 +189,42 @@ const ELDER = [
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@ngavrej",
+    username: "@UncleBRN",
     role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
   {
-    username: "@astagabrn",
+    username: "@Aiemyoursbaby",
     role: "ELDER",
     description:
       "Mengelola komunitas dan aktivitas PPK.",
   },
+  {
+    username: "@liearaa",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@ntgklwr",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@lauzeyyy",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+  {
+    username: "@SeoKxe",
+    role: "ELDER",
+    description:
+      "Mengelola komunitas dan aktivitas PPK.",
+  },
+
 ];
 
 // =========================================================
