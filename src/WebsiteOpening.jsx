@@ -6,15 +6,15 @@ import "./Opening.css";
 const scenes = [
   {
     type: "fishit",
-    duration: 3500,
+    duration: 1800,
   },
   {
     type: "ppk",
-    duration: 3000,
+    duration: 1600,
   },
   {
     type: "developers",
-    duration: 4000,
+    duration: 2000,
   },
 ];
 
@@ -61,11 +61,12 @@ export default function WebsiteOpening({
       try {
         const response = await fetch(
           apiUrl(
-            `/api/team/${DEVELOPER_USERNAME}?t=${Date.now()}`
+            `/api/team/${DEVELOPER_USERNAME}`
           ),
           {
             method: "GET",
-            cache: "no-store",
+            cache: "default",
+            signal: AbortSignal.timeout(4500),
           }
         );
 
@@ -115,7 +116,7 @@ export default function WebsiteOpening({
 
         if (!avatar && data.hasPhoto !== false) {
           avatar = apiUrl(
-            `/api/telegram/avatar/${DEVELOPER_USERNAME}?t=${Date.now()}`
+            `/api/telegram/avatar/${DEVELOPER_USERNAME}`
           );
         }
 
@@ -129,11 +130,7 @@ export default function WebsiteOpening({
           avatar &&
           avatar.startsWith("/")
         ) {
-          avatar = apiUrl(
-            `${avatar}${
-              avatar.includes("?") ? "&" : "?"
-            }t=${Date.now()}`
-          );
+          avatar = apiUrl(avatar);
         }
 
         console.log(
@@ -239,7 +236,7 @@ export default function WebsiteOpening({
           <div className="opening-grid" />
 
           <div className="opening-particles">
-            {Array.from({ length: 24 }).map(
+            {Array.from({ length: 10 }).map(
               (_, index) => (
                 <span
                   key={index}
@@ -318,7 +315,7 @@ export default function WebsiteOpening({
         <div className="opening-grid" />
 
         <div className="opening-particles">
-          {Array.from({ length: 24 }).map(
+          {Array.from({ length: 10 }).map(
             (_, index) => (
               <span
                 key={index}
@@ -438,12 +435,6 @@ export default function WebsiteOpening({
                     className="opening-dev-avatar-image"
                     loading="eager"
                     decoding="async"
-                    onLoad={() => {
-                      console.log(
-                        "[OPENING] Foto developer berhasil dimuat:",
-                        developer.avatar
-                      );
-                    }}
                     onError={(event) => {
                       console.warn(
                         "[OPENING] Foto developer gagal dimuat:",

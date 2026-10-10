@@ -2030,3 +2030,116 @@
     animation: none !important;
   }
 }
+
+
+/* =========================================================
+   PERFORMANCE PATCH — HALLOWEEN OPENING
+   Keeps the existing layout and Halloween palette.
+   ========================================================= */
+
+/* Avoid animating oversized blurred surfaces. */
+.opening-glow {
+  width: min(340px, 72vw);
+  height: min(340px, 72vw);
+  filter: blur(38px);
+  will-change: opacity;
+}
+
+.opening-glow-one { animation-duration: 14s; }
+.opening-glow-two { animation-duration: 18s; }
+
+/* Static atmosphere gradients are cheaper than full-screen animated blur. */
+.website-opening::before,
+.website-opening::after {
+  animation-duration: 30s !important;
+  opacity: .45;
+}
+
+.opening-content::before {
+  filter: none !important;
+  animation-duration: 28s !important;
+  opacity: .45;
+}
+
+/* Keep atmosphere but reduce visual layers and repaint costs. */
+.opening-grid { opacity: .055; }
+.opening-particles .opening-particle {
+  box-shadow: 0 0 5px rgba(255, 133, 46, .25);
+}
+
+.opening-dev-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: rgba(14, 8, 20, .92);
+}
+
+.opening-start-button {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.opening-logo-ring,
+.opening-logo-ring-two,
+.opening-ppk-ring,
+.opening-dev-avatar-ring {
+  will-change: transform;
+}
+
+.opening-fishit-logo,
+.opening-ppk-logo,
+.opening-start-logo {
+  will-change: auto;
+}
+
+.opening-start-button::before,
+.opening-dev-card::before {
+  animation-duration: 8s !important;
+}
+
+/* Smooth fade-out without scaling the entire content layer. */
+.website-opening.opening-closing .opening-content {
+  transform: none !important;
+  transition: opacity .45s ease;
+  opacity: 0;
+}
+
+.website-opening.opening-closing {
+  transition: opacity .5s ease, visibility .5s ease;
+}
+
+@media (max-width: 768px) {
+  .opening-glow {
+    filter: blur(24px);
+    opacity: .65;
+  }
+
+  .opening-grid { display: none; }
+
+  .opening-particles .opening-particle {
+    box-shadow: none;
+  }
+
+  .opening-start-logo,
+  .opening-fishit-logo,
+  .opening-ppk-logo {
+    filter: drop-shadow(0 0 10px rgba(255, 118, 25, .18)) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opening-glow,
+  .opening-particle,
+  .opening-logo-ring,
+  .opening-ppk-ring,
+  .opening-dev-avatar-ring,
+  .opening-fishit-logo,
+  .opening-loading-progress,
+  .opening-scene,
+  .opening-dev-card,
+  .opening-start-button::before,
+  .opening-background::before,
+  .opening-background::after,
+  .opening-content::before {
+    animation: none !important;
+  }
+}
