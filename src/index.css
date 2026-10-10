@@ -6533,401 +6533,180 @@ a:focus-visible {
 }
 
 /* =========================================================
-   HALLOWEEN FISHING — THEME OVERRIDE
-   Tema mancing tetap dipertahankan, dengan aksen Halloween.
-   Diletakkan paling bawah agar tidak mengganggu layout lama.
+   PPK HALLOWEEN FISHING — REVISI 2
+   Layout dan struktur asli dipertahankan; hanya visual/warna.
 ========================================================= */
-
 :root {
-  --bg: #0b0814;
-  --bg-soft: #100b1b;
-  --surface: #171025;
-  --surface-2: #211432;
-  --surface-3: #2b1a3d;
-
-  --line: rgba(190, 151, 255, 0.14);
-  --line-strong: rgba(190, 151, 255, 0.26);
-
-  --text: #f7f1ff;
-  --text-soft: #c1b4d2;
-  --text-muted: #8b7b9d;
-
-  --green: #ff9638;
-  --green-light: #ffb45e;
-  --green-dark: #d86b19;
-
-  --gold: #c6a5ff;
-  --danger: #ff6b78;
+  --bg: #071216;
+  --bg-soft: #0a1a20;
+  --surface: #0d2026;
+  --surface-2: #112a31;
+  --surface-3: #18373d;
+  --line: rgba(133, 198, 190, 0.14);
+  --line-strong: rgba(255, 145, 67, 0.30);
+  --text: #f1f7f5;
+  --text-soft: #b1c4c1;
+  --text-muted: #7e9692;
+  --green: #ff9b4a;
+  --green-light: #ffc078;
+  --green-dark: #d96a2c;
+  --gold: #b69bff;
+  --danger: #ff777d;
 }
 
 body {
   background:
-    radial-gradient(circle at 12% 4%, rgba(123, 62, 180, 0.16), transparent 28%),
-    radial-gradient(circle at 88% 14%, rgba(255, 119, 31, 0.08), transparent 24%),
+    radial-gradient(ellipse at 12% 0%, rgba(255, 119, 43, .085), transparent 30%),
+    radial-gradient(ellipse at 92% 18%, rgba(137, 91, 206, .095), transparent 28%),
+    radial-gradient(ellipse at 50% 65%, rgba(20, 104, 111, .075), transparent 45%),
     var(--bg);
 }
 
-::selection {
-  background: rgba(255, 142, 45, 0.35);
-  color: #fff;
-}
+::selection { background: rgba(255, 145, 67, .32); color: #fff; }
 
+/* Header tetap tipis dan bersih */
+.navbar {
+  background: rgba(5, 17, 22, .88);
+  border-bottom-color: rgba(255, 155, 74, .13);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .12);
+  backdrop-filter: blur(18px);
+}
+.logo-symbol {
+  border-color: rgba(255, 155, 74, .38);
+  color: #ffad62;
+  background: linear-gradient(145deg, rgba(255, 155, 74, .17), rgba(139, 91, 206, .12));
+  box-shadow: 0 0 22px rgba(255, 130, 52, .08);
+}
+.nav-links a:not(.nav-join)::after,
+.eyebrow-line { background: var(--green); }
+.nav-join {
+  border-color: rgba(255, 155, 74, .34);
+  background: rgba(255, 155, 74, .08);
+}
+.nav-join:hover { background: rgba(255, 155, 74, .15); }
+
+/* Laut malam: tetap mempertahankan hero, grid, kapal dan ombak asli */
+.hero {
+  background-image:
+    radial-gradient(ellipse at 78% 22%, rgba(135, 89, 202, .11), transparent 32%),
+    radial-gradient(ellipse at 18% 70%, rgba(255, 128, 51, .055), transparent 35%);
+}
+.hero-glow-one { background: rgba(255, 132, 57, .11); }
+.hero-glow-two { background: rgba(133, 91, 201, .12); }
+.hero-badge {
+  border-color: rgba(255, 155, 74, .26);
+  background: rgba(255, 155, 74, .075);
+  color: #ffc078;
+}
+.hero h1 em,
 h2 em,
-h3 em,
-.hero h1 em {
-  color: var(--green);
-}
-
+h3 em { color: #ffad62; }
+.hero h1 span { color: #c0aaff; }
+.hero-metric .green-number,
 .section-eyebrow,
-.hero-badge,
 .game-username,
 .team-role,
 .dashboard-link,
-.crew-counter strong,
-.hero-metric .green-number {
-  color: var(--green);
+.crew-counter strong { color: #ffad62; }
+.hero-ocean {
+  filter: saturate(.88);
 }
 
-/* Navbar: malam Halloween */
-.navbar {
-  border-bottom-color: rgba(190, 151, 255, 0.13);
-  background: rgba(11, 7, 19, 0.84);
-}
-
-.logo-symbol {
-  border-color: rgba(255, 150, 56, 0.42);
-  color: var(--green);
-  background: linear-gradient(145deg, rgba(255, 150, 56, 0.18), rgba(143, 88, 207, 0.08));
-  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 0 24px rgba(255, 125, 32, .08);
-}
-
-.nav-links a:not(.nav-join)::after,
-.eyebrow-line {
-  background: var(--green);
-}
-
-.nav-join {
-  border-color: rgba(255, 150, 56, 0.34);
-  color: var(--green) !important;
-  background: rgba(255, 150, 56, 0.08);
-}
-
-.nav-join:hover {
-  background: rgba(255, 150, 56, 0.16);
-}
-
-.status-dot.online,
-.live-dot,
-.card-live i,
-.connection-pill.connected span,
-.pulse-icon {
-  background: #ff9638;
-  box-shadow: 0 0 0 4px rgba(255, 150, 56, 0.1), 0 0 18px rgba(255, 120, 28, 0.28);
-}
-
-/* Hero: tetap laut dan perahu, ditambah nuansa bulan seram */
-.hero {
-  background:
-    radial-gradient(circle at 72% 26%, rgba(126, 67, 178, 0.18), transparent 28%),
-    radial-gradient(circle at 82% 68%, rgba(255, 111, 27, 0.09), transparent 25%),
-    linear-gradient(180deg, #0b0814 0%, #100b1b 62%, #0b0914 100%);
-}
-
-.hero-grid {
-  background-image:
-    linear-gradient(rgba(180, 135, 245, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 135, 245, 0.045) 1px, transparent 1px);
-}
-
-.hero-glow-one {
-  background: rgba(117, 55, 167, 0.16);
-}
-
-.hero-glow-two {
-  background: rgba(255, 119, 31, 0.12);
-}
-
-.hero-badge {
-  border-color: rgba(255, 150, 56, 0.28);
-  background: rgba(255, 150, 56, 0.07);
-}
-
-.hero h1 span {
-  color: #e0d3f2;
-}
-
+/* Tombol utama: oranye lentera, bukan neon menyilaukan */
 .button-primary {
-  color: #1b0d20;
-  background: linear-gradient(135deg, #ffb45e, #ff8730);
-  box-shadow: 0 12px 35px rgba(255, 115, 27, 0.2);
+  border-color: rgba(255, 174, 97, .55);
+  color: #20150e;
+  background: linear-gradient(135deg, #ffc078, #ff9143 72%, #ed7738);
+  box-shadow: 0 8px 25px rgba(255, 127, 48, .14), inset 0 1px rgba(255,255,255,.35);
 }
-
 .button-primary:hover {
-  background: linear-gradient(135deg, #ffc477, #ff9b45);
+  box-shadow: 0 12px 30px rgba(255, 127, 48, .22), inset 0 1px rgba(255,255,255,.4);
+}
+.button-secondary,
+.button-outline {
+  border-color: rgba(182, 155, 255, .27);
+}
+.button-secondary:hover,
+.button-outline:hover {
+  border-color: rgba(255, 155, 74, .42);
+  background: rgba(255, 155, 74, .06);
 }
 
-.button-secondary {
-  border-color: rgba(190, 151, 255, 0.24);
-  color: #e0d3f2;
-  background: rgba(143, 88, 207, 0.06);
-}
-
-.button-secondary:hover {
-  border-color: rgba(255, 150, 56, 0.4);
-  background: rgba(255, 150, 56, 0.07);
-}
-
-.moon {
-  background:
-    radial-gradient(circle at 32% 28%, #fff0d5, #e9c7a2 58%, #a990b9 100%);
-  box-shadow: 0 0 50px rgba(255, 196, 135, 0.18), 0 0 125px rgba(157, 105, 211, 0.12);
-}
-
-.distant-horizon {
-  background: linear-gradient(90deg, transparent, rgba(255, 150, 56, 0.28), transparent);
-}
-
-.boat-flag {
-  background: #ff9638;
-  color: #1a0d1b;
-}
-
-.ocean-back {
-  background:
-    repeating-linear-gradient(170deg, rgba(156, 103, 197, 0.15) 0 2px, transparent 2px 18px),
-    #11182a;
-}
-
-.ocean-mid {
-  background:
-    repeating-linear-gradient(173deg, rgba(255, 144, 65, 0.12) 0 2px, transparent 2px 15px),
-    #0c1423;
-}
-
-.ocean-front {
-  background:
-    repeating-linear-gradient(176deg, rgba(172, 132, 224, 0.12) 0 2px, transparent 2px 13px),
-    #090d1a;
-}
-
-/* Sentuhan Halloween dekoratif, tidak membutuhkan perubahan HTML */
-.hero::after {
-  content: "🎃  SPOOKY FISHING";
-  position: absolute;
-  z-index: 5;
-  top: 105px;
-  right: max(24px, calc((100vw - 1180px) / 2));
-  padding: 9px 13px;
-  border: 1px solid rgba(255, 150, 56, 0.25);
-  border-radius: 999px;
-  color: #ffc078;
-  background: rgba(22, 12, 30, 0.72);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18), 0 0 22px rgba(255, 120, 28, 0.07);
-  font: 700 9px/1 "DM Sans", sans-serif;
-  letter-spacing: 0.12em;
-  pointer-events: none;
-}
-
-/* Panel dan kartu */
-.about-section,
-.team-section {
-  background:
-    radial-gradient(circle at 80% 45%, rgba(126, 67, 178, 0.08), transparent 32%),
-    var(--bg-soft);
-}
-
-.games-section,
-.community-section {
-  background:
-    radial-gradient(circle at 18% 30%, rgba(255, 119, 31, 0.055), transparent 36%),
-    #0c0916;
-}
-
-.about-card {
-  border-color: rgba(190, 151, 255, 0.22);
-  background:
-    radial-gradient(circle at 50% 42%, rgba(255, 150, 56, 0.11), transparent 36%),
-    linear-gradient(145deg, #211432, #100b1b 75%);
-}
-
-.about-card::before {
-  border-color: rgba(255, 150, 56, 0.1);
-}
-
-.emblem-ring {
-  border-color: rgba(255, 150, 56, 0.25);
-  color: var(--green);
-  background: rgba(255, 150, 56, 0.025);
-  box-shadow: 0 0 0 20px rgba(255, 150, 56, 0.025), 0 0 80px rgba(255, 126, 37, 0.1);
-}
-
-.emblem-ring::before,
-.emblem-ring::after {
-  border-color: rgba(190, 151, 255, 0.13);
-}
-
-.about-floating-card {
-  border-color: rgba(255, 150, 56, 0.2);
-  background: rgba(19, 11, 29, 0.94);
-}
-
-.game-card {
-  border-color: rgba(190, 151, 255, 0.15);
-  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(143,88,207,.025));
-}
-
-.game-card::before {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 150, 56, 0.13), transparent 62%);
-}
-
-.game-card:hover {
-  border-color: rgba(255, 150, 56, 0.38);
-  background: linear-gradient(145deg, rgba(255, 150, 56, 0.07), rgba(143, 88, 207, 0.035));
-}
-
-.game-status {
-  color: #ffb45e;
-  border-color: rgba(255, 150, 56, 0.22);
-  background: rgba(255, 150, 56, 0.08);
-}
-
-.game-status::before {
-  background: #ff9638;
-  box-shadow: 0 0 0 3px rgba(255, 150, 56, 0.16);
-}
-
-.game-logo {
-  border-color: rgba(190, 151, 255, 0.22);
-  color: #c6a5ff;
-  background: linear-gradient(145deg, rgba(143, 88, 207, 0.16), rgba(255, 150, 56, 0.035));
-}
-
-.game-username,
-.game-card-footer svg {
-  color: #ffad58;
-}
-
-.game-card-footer {
-  border-top-color: rgba(190, 151, 255, 0.15);
-}
-
+/* Kartu tetap bernuansa laut; aksen Halloween muncul saat hover */
+.game-card,
 .team-card,
+.member-card,
 .dashboard-main,
 .dashboard-online,
 .dashboard-community,
-.member-card {
-  border-color: rgba(190, 151, 255, 0.14);
-  background-color: rgba(24, 15, 36, 0.68);
+.event-card {
+  border-color: rgba(143, 191, 187, .14);
+  background-color: rgba(11, 31, 37, .82);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
 }
-
+.game-card::before {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 144, 65, .09), transparent 64%);
+}
+.game-card:hover,
 .team-card:hover,
-.member-card:hover {
-  border-color: rgba(255, 150, 56, 0.32);
-  background: rgba(255, 150, 56, 0.045);
+.member-card:hover,
+.event-card:hover {
+  border-color: rgba(255, 155, 74, .38);
+  box-shadow: 0 15px 38px rgba(0, 0, 0, .19), 0 0 0 1px rgba(255, 155, 74, .035);
 }
-
-.team-avatar {
-  border-color: rgba(190, 151, 255, 0.2);
-  background: linear-gradient(145deg, #382348, #171025);
+.game-status {
+  color: #ffc078;
+  border-color: rgba(255, 155, 74, .22);
+  background: rgba(255, 155, 74, .075);
 }
-
+.game-status::before {
+  background: #ff9b4a;
+  box-shadow: 0 0 0 3px rgba(255, 155, 74, .12);
+}
+.game-logo,
+.team-avatar,
+.mini-icon {
+  border-color: rgba(182, 155, 255, .22);
+  background: linear-gradient(145deg, rgba(182, 155, 255, .12), rgba(255, 155, 74, .065));
+}
 .team-card-featured {
-  border-color: rgba(255, 150, 56, 0.25);
   background:
-    radial-gradient(circle at 85% 20%, rgba(255, 150, 56, 0.08), transparent 30%),
-    linear-gradient(145deg, rgba(255,255,255,.04), rgba(143,88,207,.025));
+    radial-gradient(circle at 90% 8%, rgba(255, 145, 67, .09), transparent 34%),
+    rgba(11, 31, 37, .88);
+  border-color: rgba(255, 155, 74, .25);
 }
-
 .team-card-featured .team-role,
-.team-card-featured .team-avatar {
-  border-color: rgba(255, 150, 56, 0.3);
-  color: #ffb45e;
-}
-
+.team-card-featured .team-avatar { border-color: rgba(255, 155, 74, .30); }
 .dashboard-main,
 .dashboard-online {
   background:
-    radial-gradient(circle at 80% 10%, rgba(143, 88, 207, 0.12), transparent 34%),
-    #171025;
+    radial-gradient(circle at 85% 8%, rgba(135, 91, 202, .10), transparent 35%),
+    rgba(10, 28, 34, .92);
 }
-
 .online-number,
-.presence-bottom strong {
-  color: #ffad58;
-}
-
-.presence-progress div {
-  background: linear-gradient(90deg, #9e73dc, #ff9638);
-}
-
-.mini-icon {
-  border-color: rgba(255, 150, 56, 0.2);
-  color: #ffad58;
-  background: rgba(255, 150, 56, 0.07);
-}
-
+.presence-bottom strong { color: #ffad62; }
+.presence-progress div { background: linear-gradient(90deg, #8e77d8, #ff9b4a); }
 .connection-pill.connected {
-  border-color: rgba(255, 150, 56, 0.2);
-  color: #ffb45e;
+  border-color: rgba(255, 155, 74, .22);
+  color: #ffc078;
 }
 
-.community-note {
-  border-color: rgba(190, 151, 255, 0.12);
-  background: rgba(143, 88, 207, 0.035);
-}
-
-.community-note svg,
-.about-points svg,
-.dashboard-top > svg,
-.scroll-indicator svg {
-  color: #ffad58;
-}
-
-/* Event cards: sedikit lebih spooky tanpa mengubah fungsi */
+/* Bagian event mendapat aksen ungu/oranye, tanpa mengubah urutan/layout */
 .event-card {
-  border-color: rgba(190, 151, 255, 0.16);
-  background-color: #171025;
+  background: linear-gradient(145deg, rgba(15, 37, 43, .96), rgba(12, 27, 34, .96));
 }
+.event-status {
+  border-color: rgba(182, 155, 255, .24);
+}
+.event-card:hover .event-banner-container img { filter: saturate(1.06); }
 
-.event-card:hover {
-  border-color: rgba(255, 150, 56, 0.32);
+/* Scrollbar bertema laut malam */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff9b4a, #7864b7);
+  border: 2px solid var(--bg);
 }
-
-.event-banner-container {
-  background: linear-gradient(135deg, rgba(143, 88, 207, 0.14), rgba(255, 150, 56, 0.08));
-}
-
-.event-status,
-.event-winner-profile-button,
-.event-winner-claim-button {
-  accent-color: #ff9638;
-}
-
-button:focus-visible,
-a:focus-visible {
-  outline-color: rgba(255, 150, 56, 0.85);
-}
-
-.elder-grid .team-card::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 150, 56, 0.5), transparent);
-}
-
-@media (max-width: 700px) {
-  .hero::after {
-    top: 91px;
-    right: 12px;
-    padding: 8px 10px;
-    font-size: 8px;
-  }
-}
+::-webkit-scrollbar-thumb:hover { background: #ffc078; }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { scroll-behavior: auto !important; }
 }
