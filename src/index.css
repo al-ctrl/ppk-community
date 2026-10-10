@@ -6533,464 +6533,1390 @@ a:focus-visible {
 }
 
 /* =========================================================
-   PPK HALLOWEEN FISHING — REVISI 2
-   Layout dan struktur asli dipertahankan; hanya visual/warna.
+   HALLOWEEN FISHING — THEME OVERRIDE
+   Tema mancing tetap dipertahankan, dengan aksen Halloween.
+   Diletakkan paling bawah agar tidak mengganggu layout lama.
 ========================================================= */
+
 :root {
-  --bg: #071216;
-  --bg-soft: #0a1a20;
-  --surface: #0d2026;
-  --surface-2: #112a31;
-  --surface-3: #18373d;
-  --line: rgba(133, 198, 190, 0.14);
-  --line-strong: rgba(255, 145, 67, 0.30);
-  --text: #f1f7f5;
-  --text-soft: #b1c4c1;
-  --text-muted: #7e9692;
-  --green: #ff9b4a;
-  --green-light: #ffc078;
-  --green-dark: #d96a2c;
-  --gold: #b69bff;
-  --danger: #ff777d;
+  --bg: #0b0814;
+  --bg-soft: #100b1b;
+  --surface: #171025;
+  --surface-2: #211432;
+  --surface-3: #2b1a3d;
+
+  --line: rgba(190, 151, 255, 0.14);
+  --line-strong: rgba(190, 151, 255, 0.26);
+
+  --text: #f7f1ff;
+  --text-soft: #c1b4d2;
+  --text-muted: #8b7b9d;
+
+  --green: #ff9638;
+  --green-light: #ffb45e;
+  --green-dark: #d86b19;
+
+  --gold: #c6a5ff;
+  --danger: #ff6b78;
 }
 
 body {
   background:
-    radial-gradient(ellipse at 12% 0%, rgba(255, 119, 43, .085), transparent 30%),
-    radial-gradient(ellipse at 92% 18%, rgba(137, 91, 206, .095), transparent 28%),
-    radial-gradient(ellipse at 50% 65%, rgba(20, 104, 111, .075), transparent 45%),
+    radial-gradient(circle at 12% 4%, rgba(123, 62, 180, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 14%, rgba(255, 119, 31, 0.08), transparent 24%),
     var(--bg);
 }
 
-::selection { background: rgba(255, 145, 67, .32); color: #fff; }
+::selection {
+  background: rgba(255, 142, 45, 0.35);
+  color: #fff;
+}
 
-/* Header tetap tipis dan bersih */
-.navbar {
-  background: rgba(5, 17, 22, .88);
-  border-bottom-color: rgba(255, 155, 74, .13);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .12);
-  backdrop-filter: blur(18px);
-}
-.logo-symbol {
-  border-color: rgba(255, 155, 74, .38);
-  color: #ffad62;
-  background: linear-gradient(145deg, rgba(255, 155, 74, .17), rgba(139, 91, 206, .12));
-  box-shadow: 0 0 22px rgba(255, 130, 52, .08);
-}
-.nav-links a:not(.nav-join)::after,
-.eyebrow-line { background: var(--green); }
-.nav-join {
-  border-color: rgba(255, 155, 74, .34);
-  background: rgba(255, 155, 74, .08);
-}
-.nav-join:hover { background: rgba(255, 155, 74, .15); }
-
-/* Laut malam: tetap mempertahankan hero, grid, kapal dan ombak asli */
-.hero {
-  background-image:
-    radial-gradient(ellipse at 78% 22%, rgba(135, 89, 202, .11), transparent 32%),
-    radial-gradient(ellipse at 18% 70%, rgba(255, 128, 51, .055), transparent 35%);
-}
-.hero-glow-one { background: rgba(255, 132, 57, .11); }
-.hero-glow-two { background: rgba(133, 91, 201, .12); }
-.hero-badge {
-  border-color: rgba(255, 155, 74, .26);
-  background: rgba(255, 155, 74, .075);
-  color: #ffc078;
-}
-.hero h1 em,
 h2 em,
-h3 em { color: #ffad62; }
-.hero h1 span { color: #c0aaff; }
-.hero-metric .green-number,
+h3 em,
+.hero h1 em {
+  color: var(--green);
+}
+
 .section-eyebrow,
+.hero-badge,
 .game-username,
 .team-role,
 .dashboard-link,
-.crew-counter strong { color: #ffad62; }
-.hero-ocean {
-  filter: saturate(.88);
+.crew-counter strong,
+.hero-metric .green-number {
+  color: var(--green);
 }
 
-/* Tombol utama: oranye lentera, bukan neon menyilaukan */
-.button-primary {
-  border-color: rgba(255, 174, 97, .55);
-  color: #20150e;
-  background: linear-gradient(135deg, #ffc078, #ff9143 72%, #ed7738);
-  box-shadow: 0 8px 25px rgba(255, 127, 48, .14), inset 0 1px rgba(255,255,255,.35);
-}
-.button-primary:hover {
-  box-shadow: 0 12px 30px rgba(255, 127, 48, .22), inset 0 1px rgba(255,255,255,.4);
-}
-.button-secondary,
-.button-outline {
-  border-color: rgba(182, 155, 255, .27);
-}
-.button-secondary:hover,
-.button-outline:hover {
-  border-color: rgba(255, 155, 74, .42);
-  background: rgba(255, 155, 74, .06);
+/* Navbar: malam Halloween */
+.navbar {
+  border-bottom-color: rgba(190, 151, 255, 0.13);
+  background: rgba(11, 7, 19, 0.84);
 }
 
-/* Kartu tetap bernuansa laut; aksen Halloween muncul saat hover */
-.game-card,
-.team-card,
-.member-card,
-.dashboard-main,
-.dashboard-online,
-.dashboard-community,
-.event-card {
-  border-color: rgba(143, 191, 187, .14);
-  background-color: rgba(11, 31, 37, .82);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
+.logo-symbol {
+  border-color: rgba(255, 150, 56, 0.42);
+  color: var(--green);
+  background: linear-gradient(145deg, rgba(255, 150, 56, 0.18), rgba(143, 88, 207, 0.08));
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 0 24px rgba(255, 125, 32, .08);
 }
-.game-card::before {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 144, 65, .09), transparent 64%);
+
+.nav-links a:not(.nav-join)::after,
+.eyebrow-line {
+  background: var(--green);
 }
-.game-card:hover,
-.team-card:hover,
-.member-card:hover,
-.event-card:hover {
-  border-color: rgba(255, 155, 74, .38);
-  box-shadow: 0 15px 38px rgba(0, 0, 0, .19), 0 0 0 1px rgba(255, 155, 74, .035);
+
+.nav-join {
+  border-color: rgba(255, 150, 56, 0.34);
+  color: var(--green) !important;
+  background: rgba(255, 150, 56, 0.08);
 }
-.game-status {
-  color: #ffc078;
-  border-color: rgba(255, 155, 74, .22);
-  background: rgba(255, 155, 74, .075);
+
+.nav-join:hover {
+  background: rgba(255, 150, 56, 0.16);
 }
-.game-status::before {
-  background: #ff9b4a;
-  box-shadow: 0 0 0 3px rgba(255, 155, 74, .12);
+
+.status-dot.online,
+.live-dot,
+.card-live i,
+.connection-pill.connected span,
+.pulse-icon {
+  background: #ff9638;
+  box-shadow: 0 0 0 4px rgba(255, 150, 56, 0.1), 0 0 18px rgba(255, 120, 28, 0.28);
 }
-.game-logo,
-.team-avatar,
-.mini-icon {
-  border-color: rgba(182, 155, 255, .22);
-  background: linear-gradient(145deg, rgba(182, 155, 255, .12), rgba(255, 155, 74, .065));
-}
-.team-card-featured {
+
+/* Hero: tetap laut dan perahu, ditambah nuansa bulan seram */
+.hero {
   background:
-    radial-gradient(circle at 90% 8%, rgba(255, 145, 67, .09), transparent 34%),
-    rgba(11, 31, 37, .88);
-  border-color: rgba(255, 155, 74, .25);
-}
-.team-card-featured .team-role,
-.team-card-featured .team-avatar { border-color: rgba(255, 155, 74, .30); }
-.dashboard-main,
-.dashboard-online {
-  background:
-    radial-gradient(circle at 85% 8%, rgba(135, 91, 202, .10), transparent 35%),
-    rgba(10, 28, 34, .92);
-}
-.online-number,
-.presence-bottom strong { color: #ffad62; }
-.presence-progress div { background: linear-gradient(90deg, #8e77d8, #ff9b4a); }
-.connection-pill.connected {
-  border-color: rgba(255, 155, 74, .22);
-  color: #ffc078;
+    radial-gradient(circle at 72% 26%, rgba(126, 67, 178, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 68%, rgba(255, 111, 27, 0.09), transparent 25%),
+    linear-gradient(180deg, #0b0814 0%, #100b1b 62%, #0b0914 100%);
 }
 
-/* Bagian event mendapat aksen ungu/oranye, tanpa mengubah urutan/layout */
-.event-card {
-  background: linear-gradient(145deg, rgba(15, 37, 43, .96), rgba(12, 27, 34, .96));
-}
-.event-status {
-  border-color: rgba(182, 155, 255, .24);
-}
-.event-card:hover .event-banner-container img { filter: saturate(1.06); }
-
-/* Scrollbar bertema laut malam */
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff9b4a, #7864b7);
-  border: 2px solid var(--bg);
-}
-::-webkit-scrollbar-thumb:hover { background: #ffc078; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; }
-}
-
-/* =========================================================
-   PPK HALLOWEEN FISHING — AESTHETIC MOTION LAYER
-   Animasi dekoratif saja: tidak mengubah struktur/layout.
-========================================================= */
-
-@keyframes ppkHalloweenTwinkle {
-  0%, 100% { opacity: .32; transform: translateY(0); }
-  50% { opacity: .72; transform: translateY(-4px); }
-}
-
-@keyframes ppkLanternGlow {
-  0%, 100% { opacity: .72; filter: blur(7px); }
-  50% { opacity: 1; filter: blur(12px); }
-}
-
-@keyframes ppkMoonDrift {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes ppkBatFlyRight {
-  0% { transform: translate3d(-8vw, 0, 0) rotate(-7deg) scale(.82); opacity: 0; }
-  8% { opacity: .58; }
-  45% { transform: translate3d(48vw, -24px, 0) rotate(4deg) scale(1); }
-  88% { opacity: .5; }
-  100% { transform: translate3d(112vw, 12px, 0) rotate(8deg) scale(.88); opacity: 0; }
-}
-
-@keyframes ppkBatFlyLeft {
-  0% { transform: translate3d(8vw, 0, 0) rotate(8deg) scale(.7); opacity: 0; }
-  12% { opacity: .38; }
-  50% { transform: translate3d(-48vw, 18px, 0) rotate(-5deg) scale(.9); }
-  90% { opacity: .34; }
-  100% { transform: translate3d(-112vw, -12px, 0) rotate(-9deg) scale(.76); opacity: 0; }
-}
-
-@keyframes ppkFogDrift {
-  0%, 100% { transform: translate3d(-2%, 0, 0) scale(1); opacity: .28; }
-  50% { transform: translate3d(2%, -7px, 0) scale(1.05); opacity: .48; }
-}
-
-@keyframes ppkButtonShimmer {
-  0%, 72%, 100% { background-position: 0% 50%; }
-  84% { background-position: 100% 50%; }
-}
-
-/* Langit hero: bintang berkelip pelan dan kabut tipis */
-.hero-stars {
-  animation: ppkHalloweenTwinkle 7s ease-in-out infinite;
-  will-change: opacity, transform;
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(180, 135, 245, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 135, 245, 0.045) 1px, transparent 1px);
 }
 
 .hero-glow-one {
-  animation: ppkLanternGlow 8s ease-in-out infinite;
+  background: rgba(117, 55, 167, 0.16);
 }
 
 .hero-glow-two {
-  animation: ppkLanternGlow 10s ease-in-out infinite reverse;
+  background: rgba(255, 119, 31, 0.12);
 }
 
+.hero-badge {
+  border-color: rgba(255, 150, 56, 0.28);
+  background: rgba(255, 150, 56, 0.07);
+}
+
+.hero h1 span {
+  color: #e0d3f2;
+}
+
+.button-primary {
+  color: #1b0d20;
+  background: linear-gradient(135deg, #ffb45e, #ff8730);
+  box-shadow: 0 12px 35px rgba(255, 115, 27, 0.2);
+}
+
+.button-primary:hover {
+  background: linear-gradient(135deg, #ffc477, #ff9b45);
+}
+
+.button-secondary {
+  border-color: rgba(190, 151, 255, 0.24);
+  color: #e0d3f2;
+  background: rgba(143, 88, 207, 0.06);
+}
+
+.button-secondary:hover {
+  border-color: rgba(255, 150, 56, 0.4);
+  background: rgba(255, 150, 56, 0.07);
+}
+
+.moon {
+  background:
+    radial-gradient(circle at 32% 28%, #fff0d5, #e9c7a2 58%, #a990b9 100%);
+  box-shadow: 0 0 50px rgba(255, 196, 135, 0.18), 0 0 125px rgba(157, 105, 211, 0.12);
+}
+
+.distant-horizon {
+  background: linear-gradient(90deg, transparent, rgba(255, 150, 56, 0.28), transparent);
+}
+
+.boat-flag {
+  background: #ff9638;
+  color: #1a0d1b;
+}
+
+.ocean-back {
+  background:
+    repeating-linear-gradient(170deg, rgba(156, 103, 197, 0.15) 0 2px, transparent 2px 18px),
+    #11182a;
+}
+
+.ocean-mid {
+  background:
+    repeating-linear-gradient(173deg, rgba(255, 144, 65, 0.12) 0 2px, transparent 2px 15px),
+    #0c1423;
+}
+
+.ocean-front {
+  background:
+    repeating-linear-gradient(176deg, rgba(172, 132, 224, 0.12) 0 2px, transparent 2px 13px),
+    #090d1a;
+}
+
+/* Sentuhan Halloween dekoratif, tidak membutuhkan perubahan HTML */
+.hero::after {
+  content: "🎃  SPOOKY FISHING";
+  position: absolute;
+  z-index: 5;
+  top: 105px;
+  right: max(24px, calc((100vw - 1180px) / 2));
+  padding: 9px 13px;
+  border: 1px solid rgba(255, 150, 56, 0.25);
+  border-radius: 999px;
+  color: #ffc078;
+  background: rgba(22, 12, 30, 0.72);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18), 0 0 22px rgba(255, 120, 28, 0.07);
+  font: 700 9px/1 "DM Sans", sans-serif;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+/* Panel dan kartu */
+.about-section,
+.team-section {
+  background:
+    radial-gradient(circle at 80% 45%, rgba(126, 67, 178, 0.08), transparent 32%),
+    var(--bg-soft);
+}
+
+.games-section,
+.community-section {
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255, 119, 31, 0.055), transparent 36%),
+    #0c0916;
+}
+
+.about-card {
+  border-color: rgba(190, 151, 255, 0.22);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 150, 56, 0.11), transparent 36%),
+    linear-gradient(145deg, #211432, #100b1b 75%);
+}
+
+.about-card::before {
+  border-color: rgba(255, 150, 56, 0.1);
+}
+
+.emblem-ring {
+  border-color: rgba(255, 150, 56, 0.25);
+  color: var(--green);
+  background: rgba(255, 150, 56, 0.025);
+  box-shadow: 0 0 0 20px rgba(255, 150, 56, 0.025), 0 0 80px rgba(255, 126, 37, 0.1);
+}
+
+.emblem-ring::before,
+.emblem-ring::after {
+  border-color: rgba(190, 151, 255, 0.13);
+}
+
+.about-floating-card {
+  border-color: rgba(255, 150, 56, 0.2);
+  background: rgba(19, 11, 29, 0.94);
+}
+
+.game-card {
+  border-color: rgba(190, 151, 255, 0.15);
+  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(143,88,207,.025));
+}
+
+.game-card::before {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 150, 56, 0.13), transparent 62%);
+}
+
+.game-card:hover {
+  border-color: rgba(255, 150, 56, 0.38);
+  background: linear-gradient(145deg, rgba(255, 150, 56, 0.07), rgba(143, 88, 207, 0.035));
+}
+
+.game-status {
+  color: #ffb45e;
+  border-color: rgba(255, 150, 56, 0.22);
+  background: rgba(255, 150, 56, 0.08);
+}
+
+.game-status::before {
+  background: #ff9638;
+  box-shadow: 0 0 0 3px rgba(255, 150, 56, 0.16);
+}
+
+.game-logo {
+  border-color: rgba(190, 151, 255, 0.22);
+  color: #c6a5ff;
+  background: linear-gradient(145deg, rgba(143, 88, 207, 0.16), rgba(255, 150, 56, 0.035));
+}
+
+.game-username,
+.game-card-footer svg {
+  color: #ffad58;
+}
+
+.game-card-footer {
+  border-top-color: rgba(190, 151, 255, 0.15);
+}
+
+.team-card,
+.dashboard-main,
+.dashboard-online,
+.dashboard-community,
+.member-card {
+  border-color: rgba(190, 151, 255, 0.14);
+  background-color: rgba(24, 15, 36, 0.68);
+}
+
+.team-card:hover,
+.member-card:hover {
+  border-color: rgba(255, 150, 56, 0.32);
+  background: rgba(255, 150, 56, 0.045);
+}
+
+.team-avatar {
+  border-color: rgba(190, 151, 255, 0.2);
+  background: linear-gradient(145deg, #382348, #171025);
+}
+
+.team-card-featured {
+  border-color: rgba(255, 150, 56, 0.25);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255, 150, 56, 0.08), transparent 30%),
+    linear-gradient(145deg, rgba(255,255,255,.04), rgba(143,88,207,.025));
+}
+
+.team-card-featured .team-role,
+.team-card-featured .team-avatar {
+  border-color: rgba(255, 150, 56, 0.3);
+  color: #ffb45e;
+}
+
+.dashboard-main,
+.dashboard-online {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(143, 88, 207, 0.12), transparent 34%),
+    #171025;
+}
+
+.online-number,
+.presence-bottom strong {
+  color: #ffad58;
+}
+
+.presence-progress div {
+  background: linear-gradient(90deg, #9e73dc, #ff9638);
+}
+
+.mini-icon {
+  border-color: rgba(255, 150, 56, 0.2);
+  color: #ffad58;
+  background: rgba(255, 150, 56, 0.07);
+}
+
+.connection-pill.connected {
+  border-color: rgba(255, 150, 56, 0.2);
+  color: #ffb45e;
+}
+
+.community-note {
+  border-color: rgba(190, 151, 255, 0.12);
+  background: rgba(143, 88, 207, 0.035);
+}
+
+.community-note svg,
+.about-points svg,
+.dashboard-top > svg,
+.scroll-indicator svg {
+  color: #ffad58;
+}
+
+/* Event cards: sedikit lebih spooky tanpa mengubah fungsi */
+.event-card {
+  border-color: rgba(190, 151, 255, 0.16);
+  background-color: #171025;
+}
+
+.event-card:hover {
+  border-color: rgba(255, 150, 56, 0.32);
+}
+
+.event-banner-container {
+  background: linear-gradient(135deg, rgba(143, 88, 207, 0.14), rgba(255, 150, 56, 0.08));
+}
+
+.event-status,
+.event-winner-profile-button,
+.event-winner-claim-button {
+  accent-color: #ff9638;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline-color: rgba(255, 150, 56, 0.85);
+}
+
+.elder-grid .team-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 150, 56, 0.5), transparent);
+}
+
+@media (max-width: 700px) {
+  .hero::after {
+    top: 91px;
+    right: 12px;
+    padding: 8px 10px;
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   HALLOWEEN FISHING V5 — RESPONSIVE + ATMOSPHERIC MOTION
+   Add-on CSS: mempertahankan struktur HTML dan layout dasar.
+========================================================= */
+
+:root {
+  --halloween-orange: #ff9638;
+  --halloween-amber: #ffc078;
+  --halloween-purple: #a878e8;
+  --halloween-lilac: #d2b7ff;
+  --halloween-night: #090713;
+  --halloween-line: rgba(190, 151, 255, 0.18);
+}
+
+/* Responsif dasar: mencegah elemen panjang merusak layar kecil */
+html {
+  scroll-padding-top: 82px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
+.container,
+.nav-shell {
+  min-width: 0;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.button,
+.nav-join,
+.game-card,
+.team-card,
+.member-card,
+.event-card {
+  touch-action: manipulation;
+}
+
+/* Atmosfer bergerak: aurora ungu dan cahaya lentera di latar */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.38;
+  background:
+    radial-gradient(ellipse at 14% 28%, rgba(119, 68, 177, 0.11), transparent 29%),
+    radial-gradient(ellipse at 83% 63%, rgba(255, 119, 31, 0.075), transparent 25%),
+    radial-gradient(ellipse at 55% 5%, rgba(97, 75, 155, 0.08), transparent 24%);
+  background-size: 125% 125%;
+  animation: halloweenAurora 24s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background-image:
+    radial-gradient(circle, rgba(255, 195, 125, 0.8) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(202, 171, 255, 0.75) 0 1px, transparent 1.8px);
+  background-size: 113px 137px, 173px 191px;
+  background-position: 0 0, 47px 71px;
+  animation: halloweenDust 38s linear infinite;
+}
+
+/* Semua section utama tetap berada di atas lapisan atmosfer */
+.navbar,
+.hero,
+.section,
+footer,
+main,
+header,
+.events-section {
+  position: relative;
+}
+
+.navbar {
+  z-index: 1000;
+}
+
+/* Hero: bintang berkelip, kabut bergeser, kelelawar melintas */
 .hero {
   isolation: isolate;
 }
 
-/* Kelelawar siluet kecil melintas di langit, di belakang konten */
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: 4;
-  width: 38px;
-  height: 24px;
-  pointer-events: none;
-  opacity: 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48'%3E%3Cpath fill='%23b7b1d8' d='M40 22C32 13 22 5 8 8l7 11L1 15l6 19 17-8 16 14 16-14 17 8 6-19-14 4 7-11C58 5 48 13 40 22Z'/%3E%3C/svg%3E");
+.hero-stars {
+  opacity: 0.62;
+  animation: starDrift 48s linear infinite, starTwinkle 5s ease-in-out infinite alternate;
+  will-change: background-position, opacity;
 }
 
-.hero::before {
-  top: 17%;
-  left: -7%;
-  animation: ppkBatFlyRight 25s linear 2s infinite;
+.hero-grid {
+  animation: gridBreath 9s ease-in-out infinite alternate;
 }
 
-.hero::after {
-  top: 31%;
-  right: -7%;
-  width: 27px;
-  height: 18px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48'%3E%3Cpath fill='%23ffb36b' d='M40 22C32 13 22 5 8 8l7 11L1 15l6 19 17-8 16 14 16-14 17 8 6-19-14 4 7-11C58 5 48 13 40 22Z'/%3E%3C/svg%3E");
-  animation: ppkBatFlyLeft 31s linear 9s infinite;
-}
-
-/* Kabut lembut di bagian laut; tidak menangkap klik */
-.hero-ocean {
-  animation: ppkFogDrift 11s ease-in-out infinite;
-  transform-origin: center bottom;
-}
-
-/* Bulan bergerak sangat halus, tanpa mengubah posisinya pada layout */
-.moon {
-  animation: ppkMoonDrift 9s ease-in-out infinite;
-  filter: drop-shadow(0 0 14px rgba(255, 176, 106, .12));
-}
-
-/* Badge terasa hidup, tetapi tidak berkedip agresif */
-.hero-badge {
-  box-shadow: 0 0 0 1px rgba(255, 155, 74, .025), 0 0 22px rgba(255, 155, 74, .035);
-  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
-}
-.hero-badge:hover {
-  border-color: rgba(255, 176, 106, .46);
-  background: rgba(255, 155, 74, .11);
-  box-shadow: 0 0 24px rgba(255, 155, 74, .09);
-}
-
-/* Kilau singkat pada tombol utama, hanya saat animasi berjalan pelan */
-.button-primary {
-  background-size: 220% 100%;
-  animation: ppkButtonShimmer 8s ease-in-out infinite;
-  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
-}
-.button-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.04);
-  animation-play-state: paused;
-}
-
-/* Kartu muncul lebih hidup saat pointer mendekat, tanpa menggeser grid */
-.game-card,
-.team-card,
-.member-card,
-.event-card {
-  transition: border-color .28s ease, box-shadow .28s ease, background-color .28s ease;
-}
-
-.game-card:hover,
-.team-card:hover,
-.member-card:hover,
-.event-card:hover {
-  box-shadow: 0 16px 38px rgba(0, 0, 0, .2), 0 0 22px rgba(255, 155, 74, .045);
-}
-
-/* Jaga pengalaman tetap nyaman di layar kecil dan bagi pengguna reduced motion */
-@media (max-width: 700px) {
-  .hero::before,
-  .hero::after {
-    width: 24px;
-    height: 16px;
-  }
-  .hero::before { top: 13%; }
-  .hero::after { top: 25%; }
-  .hero-ocean { animation-duration: 14s; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-stars,
-  .hero-glow-one,
-  .hero-glow-two,
-  .hero::before,
-  .hero::after,
-  .hero-ocean,
-  .moon,
-  .button-primary {
-    animation: none !important;
-  }
-  .button-primary,
-  .game-card,
-  .team-card,
-  .member-card,
-  .event-card {
-    transition: none !important;
-  }
-}
-
-/* =========================================================
-   PPK HALLOWEEN FISHING — REFINED EDITION
-   Lebih terasa Halloween, dekorasi tenang, layout tetap asli.
-========================================================= */
-
-/* Hentikan gerakan dekorasi yang terlalu ramai */
-.hero-stars,
-.hero-glow-two,
-.hero-ocean,
-.moon,
-.button-primary {
-  animation: none !important;
-}
 .hero-glow-one {
-  animation: ppkLanternGlow 14s ease-in-out infinite;
+  animation: glowFloatA 13s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
-/* Ganti kelelawar yang melintas dengan jaring laba-laba statis di sudut hero */
-.hero::before,
+.hero-glow-two {
+  animation: glowFloatB 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Bat silhouette menggunakan CSS saja, tanpa mengubah HTML */
+.hero::before {
+  content: "🦇";
+  position: absolute;
+  top: 17%;
+  left: -5%;
+  z-index: 6;
+  font-size: clamp(18px, 2.1vw, 28px);
+  opacity: 0.74;
+  filter: drop-shadow(0 0 10px rgba(167, 120, 232, 0.24));
+  pointer-events: none;
+  animation: batFlight 25s linear infinite;
+}
+
+/* Moonlight breathing effect */
+.moon {
+  animation: moonGlow 6s ease-in-out infinite alternate;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+.reflection {
+  animation: moonReflection 5.5s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+.distant-horizon {
+  animation: horizonGlow 4.5s ease-in-out infinite alternate;
+}
+
+/* Perahu bergerak pelan; gelombang bergeser dengan intensitas berbeda */
+.boat {
+  animation: boatBob 5s ease-in-out infinite;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.boat-flag {
+  transform-origin: left center;
+  animation: flagFlutter 2.6s ease-in-out infinite;
+}
+
+.ocean-back {
+  background-size: auto, auto;
+  animation: waveBack 15s linear infinite;
+}
+
+.ocean-mid {
+  animation: waveMid 11s linear infinite;
+}
+
+.ocean-front {
+  animation: waveFront 8s linear infinite;
+}
+
+.scroll-indicator svg {
+  animation: scrollNudge 1.8s ease-in-out infinite;
+}
+
+/* Badge Halloween: kilau tipis, bukan kedipan agresif */
 .hero::after {
+  animation: badgeAura 4.8s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* Tombol dengan sapuan cahaya saat hover */
+.button,
+.nav-join,
+.event-winner-profile-button,
+.event-winner-claim-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.button::after,
+.nav-join::after,
+.event-winner-profile-button::after,
+.event-winner-claim-button::after {
   content: "";
   position: absolute;
-  z-index: 1;
-  width: 112px;
-  height: 112px;
+  top: -60%;
+  bottom: -60%;
+  left: -130%;
+  width: 55%;
+  transform: rotate(20deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transition: left 0.7s ease;
   pointer-events: none;
-  opacity: .18;
-  background-repeat: no-repeat;
-  background-size: contain;
-  animation: none !important;
-  transform: none !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d9b7ff' stroke-width='1.2' opacity='.9'%3E%3Cpath d='M0 0L120 120M0 0L120 80M0 0L80 120M0 0L120 40M0 0L40 120M0 0L120 0M0 0L0 120'/%3E%3Cpath d='M20 0Q18 18 0 20M42 0Q38 38 0 42M64 0Q58 58 0 64M86 0Q78 78 0 86M108 0Q98 98 0 108'/%3E%3C/g%3E%3C/svg%3E");
-}
-.hero::before { top: 0; left: 0; }
-.hero::after { top: 0; right: 0; transform: scaleX(-1) !important; }
-
-/* Palet Halloween yang lebih jelas: pumpkin orange + plum, bukan neon */
-:root {
-  --halloween-pumpkin: #ff963f;
-  --halloween-amber: #ffc078;
-  --halloween-plum: #9b78c9;
 }
 
-.hero-badge {
-  border-color: rgba(255, 150, 63, .36) !important;
-  background: linear-gradient(110deg, rgba(255, 150, 63, .11), rgba(95, 59, 125, .13)) !important;
-  color: #ffd09a !important;
-  box-shadow: inset 0 0 0 1px rgba(255, 192, 120, .025), 0 5px 18px rgba(0, 0, 0, .12) !important;
-}
-.hero h1 em,
-h2 em,
-h3 em { color: #ffad62 !important; }
-.hero h1 span { color: #c4a6ed !important; }
-
-.button-primary {
-  background-size: auto !important;
-  box-shadow: 0 7px 22px rgba(255, 125, 45, .13), inset 0 1px rgba(255,255,255,.28) !important;
-}
-.button-primary:hover {
-  box-shadow: 0 9px 25px rgba(255, 125, 45, .2), inset 0 1px rgba(255,255,255,.3) !important;
+.button:hover::after,
+.nav-join:hover::after,
+.event-winner-profile-button:hover::after,
+.event-winner-claim-button:hover::after {
+  left: 150%;
 }
 
-/* Kartu seperti benda di dermaga saat malam Halloween */
+/* Kartu lebih hidup: glow tipis, hover tetap singkat */
 .game-card,
 .team-card,
 .member-card,
 .event-card,
+.about-card,
 .dashboard-main,
-.dashboard-online {
-  border-color: rgba(172, 132, 204, .17) !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, .16), inset 0 1px rgba(255, 255, 255, .012) !important;
+.dashboard-online,
+.dashboard-community {
+  transition:
+    transform 0.28s cubic-bezier(.2,.7,.2,1),
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    background-color 0.28s ease;
 }
+
 .game-card:hover,
-.team-card:hover,
-.member-card:hover,
 .event-card:hover {
-  border-color: rgba(255, 150, 63, .42) !important;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, .2), 0 0 0 1px rgba(255, 150, 63, .045) !important;
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.26),
+    0 0 28px rgba(255, 150, 56, 0.075);
 }
 
-/* Aksen jingga pada status dan scrollbar; gerakan hanya saat interaksi */
-.game-status {
-  color: #ffc078 !important;
-  border-color: rgba(255, 150, 63, .24) !important;
-  background: rgba(255, 150, 63, .075) !important;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #ff963f, #795b9f) !important;
+.team-card:hover,
+.member-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18), 0 0 20px rgba(168, 120, 232, 0.06);
 }
 
-@media (max-width: 700px) {
-  .hero::before,
-  .hero::after { width: 66px; height: 66px; opacity: .12; }
+.game-logo,
+.logo-symbol,
+.mini-icon {
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
 
+.game-card:hover .game-logo,
+.logo:hover .logo-symbol,
+.dashboard-community:hover .mini-icon {
+  transform: translateY(-2px) rotate(-3deg);
+  box-shadow: 0 0 24px rgba(255, 150, 56, 0.12);
+}
+
+.status-dot.online,
+.live-dot,
+.card-live i,
+.connection-pill.connected span,
+.pulse-icon,
+.game-status::before {
+  animation: emberPulse 2.8s ease-in-out infinite;
+}
+
+/* Detail kartu emblem */
+.emblem-ring {
+  animation: emblemFloat 7s ease-in-out infinite;
+}
+
+.emblem-ring::before {
+  animation: ringRotate 34s linear infinite;
+}
+
+.emblem-ring::after {
+  animation: ringRotate 48s linear infinite reverse;
+}
+
+/* Tim dan event: highlight berjalan perlahan pada hover */
+.team-card-featured {
+  position: relative;
+}
+
+.team-card-featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 150, 56, 0.09) 50%, transparent 75%);
+  background-size: 220% 100%;
+  transition: opacity 0.25s ease;
+}
+
+.team-card-featured:hover::before {
+  opacity: 1;
+  animation: cardShimmer 1.4s ease;
+}
+
+.event-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 100% 0%, rgba(255, 150, 56, 0.1), transparent 42%);
+  transition: opacity 0.3s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+/* Focus keyboard yang terlihat jelas */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--halloween-amber);
+  outline-offset: 3px;
+}
+
+/* Keyframes */
+@keyframes halloweenAurora {
+  0% { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+  50% { transform: translate3d(1.5%, 1%, 0) scale(1.035); }
+  100% { transform: translate3d(-0.5%, 1.5%, 0) scale(1.015); }
+}
+
+@keyframes halloweenDust {
+  from { background-position: 0 0, 47px 71px; }
+  to { background-position: 0 500px, 47px -380px; }
+}
+
+@keyframes starDrift {
+  from { background-position: 0 0, 50px 40px; }
+  to { background-position: 125px 250px, -140px 230px; }
+}
+
+@keyframes starTwinkle {
+  from { opacity: 0.32; }
+  to { opacity: 0.72; }
+}
+
+@keyframes gridBreath {
+  from { opacity: 0.12; }
+  to { opacity: 0.3; }
+}
+
+@keyframes glowFloatA {
+  from { transform: translate3d(0, 0, 0) scale(0.96); opacity: 0.65; }
+  to { transform: translate3d(26px, -18px, 0) scale(1.08); opacity: 1; }
+}
+
+@keyframes glowFloatB {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.6; }
+  to { transform: translate3d(-22px, 22px, 0) scale(1.08); opacity: 1; }
+}
+
+@keyframes batFlight {
+  0% { transform: translate3d(-2vw, 0, 0) rotate(-5deg); }
+  25% { transform: translate3d(27vw, -16px, 0) rotate(4deg); }
+  50% { transform: translate3d(54vw, 12px, 0) rotate(-3deg); }
+  75% { transform: translate3d(82vw, -11px, 0) rotate(5deg); }
+  100% { transform: translate3d(112vw, 3px, 0) rotate(-4deg); }
+}
+
+@keyframes moonGlow {
+  from { transform: scale(0.99); box-shadow: 0 0 42px rgba(255, 196, 135, 0.14), 0 0 95px rgba(157, 105, 211, 0.1); }
+  to { transform: scale(1.025); box-shadow: 0 0 62px rgba(255, 196, 135, 0.24), 0 0 135px rgba(157, 105, 211, 0.16); }
+}
+
+@keyframes moonReflection {
+  from { opacity: 0.09; transform: scaleX(0.92); }
+  to { opacity: 0.23; transform: scaleX(1.08); }
+}
+
+@keyframes horizonGlow {
+  from { opacity: 0.4; }
+  to { opacity: 0.95; }
+}
+
+@keyframes boatBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  35% { transform: translateY(-4px) rotate(-0.8deg); }
+  70% { transform: translateY(2px) rotate(0.6deg); }
+}
+
+@keyframes flagFlutter {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  50% { transform: skewY(4deg) scaleX(0.96); }
+}
+
+@keyframes waveBack {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 180px 0, 0 0; }
+}
+
+@keyframes waveMid {
+  from { background-position: 0 0; }
+  to { background-position: -160px 0; }
+}
+
+@keyframes waveFront {
+  from { background-position: 0 0; }
+  to { background-position: 130px 0; }
+}
+
+@keyframes scrollNudge {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
+
+@keyframes badgeAura {
+  0%, 100% { box-shadow: 0 8px 30px rgba(0,0,0,.18), 0 0 14px rgba(255,120,28,.045); }
+  50% { box-shadow: 0 8px 30px rgba(0,0,0,.18), 0 0 24px rgba(255,120,28,.14); }
+}
+
+@keyframes emberPulse {
+  0%, 100% { filter: brightness(0.92); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes emblemFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes cardShimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .container {
+    width: min(calc(100% - 40px), var(--container));
+  }
+
+  .nav-shell {
+    width: min(calc(100% - 40px), 1280px);
+    gap: 18px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .hero {
+    min-height: 740px;
+  }
+
+  .hero-ocean {
+    width: 60%;
+    opacity: 0.88;
+  }
+
+  .about-layout {
+    gap: 48px;
+  }
+
+  .admin-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .community-dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-community {
+    grid-column: 1 / -1;
+    min-height: 190px;
+  }
+
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile landscape / small laptop */
+@media (max-width: 760px) {
+  .container {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .nav-shell {
+    width: calc(100% - 32px);
+    min-height: 68px;
+  }
+
+  .logo-copy strong {
+    font-size: 20px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .hero {
+    min-height: 720px;
+    padding: 125px 0 100px;
+  }
+
+  .hero-content {
+    z-index: 12;
+  }
+
+  .hero h1 {
+    max-width: 620px;
+    font-size: clamp(54px, 10vw, 78px);
+  }
+
+  .hero-description {
+    max-width: 500px;
+    font-size: 14px;
+  }
+
+  .hero-ocean {
+    width: 78%;
+    height: 48%;
+    opacity: 0.48;
+  }
+
+  .moon {
+    width: 86px;
+    height: 86px;
+    right: 13%;
+  }
+
+  .boat {
+    transform: scale(0.78);
+    transform-origin: bottom right;
+    right: 14%;
+  }
+
+  .scroll-indicator {
+    right: 18px;
+    bottom: 20px;
+  }
+
+  .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .about-visual {
+    min-height: 420px;
+  }
+
+  .about-card {
+    min-height: 410px;
+  }
+
+  .about-floating-card {
+    right: 0;
+  }
+
+  .team-heading,
+  .community-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .team-heading > p,
+  .community-description {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .admin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .member-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .community-dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-main,
+  .dashboard-online,
+  .dashboard-community {
+    min-width: 0;
+    padding: 18px;
+  }
+
+  .crew-section {
+    margin-top: 64px;
+  }
+
+  .hero::after {
+    top: 82px;
+    right: 16px;
+  }
+
+  .hero::before {
+    top: 14%;
+  }
+}
+
+/* Phone */
+@media (max-width: 560px) {
+  .section {
+    padding: 64px 0;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    margin-bottom: 15px;
+  }
+
+  .nav-shell {
+    min-height: 64px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo-symbol {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-copy strong {
+    font-size: 18px;
+  }
+
+  .logo-copy small {
+    font-size: 7px;
+    letter-spacing: 0.09em;
+  }
+
+  .hero {
+    min-height: 700px;
+    padding: 120px 0 90px;
+  }
+
+  .hero h1 {
+    margin: 24px 0 18px;
+    font-size: clamp(46px, 13vw, 68px);
+    line-height: 0.92;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-badge {
+    gap: 7px;
+    max-width: 100%;
+    flex-wrap: wrap;
+    font-size: 8px;
+    letter-spacing: 0.09em;
+  }
+
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    width: min(100%, 330px);
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .hero-metrics {
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .hero-metric strong {
+    font-size: 23px;
+  }
+
+  .hero-metric span {
+    font-size: 7px;
+  }
+
+  .metric-divider {
+    height: 25px;
+  }
+
+  .hero-ocean {
+    width: 100%;
+    height: 38%;
+    opacity: 0.38;
+  }
+
+  .moon {
+    width: 65px;
+    height: 65px;
+    top: 7%;
+    right: 12%;
+  }
+
+  .boat {
+    right: 5%;
+    bottom: 26%;
+    transform: scale(0.58);
+  }
+
+  .reflection {
+    right: 12%;
+    width: 80px;
+  }
+
+  .hero::after {
+    top: 74px;
+    right: 12px;
+    padding: 7px 9px;
+    font-size: 7px;
+    letter-spacing: 0.08em;
+  }
+
+  .hero::before {
+    font-size: 17px;
+    top: 11%;
+  }
+
+  .about-copy h2,
+  .community-heading h2,
+  .activity-heading h2,
+  .faq-intro h2,
+  .team-heading h2 {
+    font-size: clamp(42px, 12vw, 60px);
+  }
+
+  .large-copy {
+    font-size: 16px;
+  }
+
+  .about-visual {
+    min-height: 360px;
+  }
+
+  .about-card {
+    width: 100%;
+    min-height: 360px;
+    padding: 18px;
+    border-radius: 19px;
+  }
+
+  .emblem-ring {
+    width: 130px;
+    height: 130px;
+  }
+
+  .emblem-ring::before {
+    width: 160px;
+    height: 160px;
+  }
+
+  .emblem-ring::after {
+    width: 188px;
+    height: 188px;
+  }
+
+  .about-card-title {
+    margin-top: 125px;
+  }
+
+  .about-card-title strong {
+    font-size: 28px;
+  }
+
+  .about-card-bottom {
+    font-size: 7px;
+    flex-wrap: wrap;
+  }
+
+  .about-floating-card {
+    bottom: 14px;
+    padding: 10px 12px;
+  }
+
+  .games-heading {
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .games-heading h2 {
+    font-size: clamp(36px, 10vw, 52px);
+  }
+
+  .games-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .game-card {
+    padding: 17px;
+  }
+
+  .admin-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .team-card,
+  .team-card-featured {
+    min-height: 76px;
+    padding: 11px 12px;
+  }
+
+  .team-card-featured .team-avatar {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .team-info h3 {
+    font-size: 18px;
+  }
+
+  .team-card-featured .team-info h3 {
+    font-size: 22px;
+  }
+
+  .community-dashboard {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-main,
+  .dashboard-online,
+  .dashboard-community {
+    min-height: 220px;
+  }
+
+  .dashboard-community {
+    grid-column: auto;
+  }
+
+  .dashboard-number,
+  .online-number {
+    margin-top: 32px;
+    font-size: clamp(58px, 17vw, 78px);
+  }
+
+  .dashboard-footer {
+    margin-top: 28px;
+  }
+
+  .crew-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .member-grid {
+    gap: 8px;
+  }
+
+  .member-card {
+    padding: 11px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Ponsel sangat kecil */
+@media (max-width: 380px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .nav-shell {
+    width: calc(100% - 24px);
+  }
+
+  .logo-copy small {
+    letter-spacing: 0.04em;
+  }
+
+  .hero {
+    min-height: 670px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12.5vw, 52px);
+  }
+
+  .hero-metrics {
+    gap: 10px;
+  }
+
+  .hero-metric strong {
+    font-size: 21px;
+  }
+
+  .metric-divider {
+    display: none;
+  }
+
+  .about-card-title span {
+    font-size: 13px;
+  }
+
+  .about-card-title strong {
+    font-size: 25px;
+  }
+
+  .team-info-top {
+    flex-wrap: wrap;
+  }
+
+  .team-role {
+    max-width: 100%;
+  }
+}
+
+/* Preferensi aksesibilitas: matikan gerakan bila pengguna memilih reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .hero-glow-one,
+  body::before,
+  body::after,
   .hero-stars,
+  .hero-grid,
+  .hero-glow-one,
   .hero-glow-two,
-  .hero-ocean,
-  .moon,
-  .button-primary,
   .hero::before,
-  .hero::after { animation: none !important; }
-  *, *::before, *::after { scroll-behavior: auto !important; }
+  .hero::after,
+  .moon,
+  .reflection,
+  .distant-horizon,
+  .boat,
+  .boat-flag,
+  .ocean-back,
+  .ocean-mid,
+  .ocean-front,
+  .scroll-indicator svg,
+  .status-dot.online,
+  .live-dot,
+  .card-live i,
+  .connection-pill.connected span,
+  .pulse-icon,
+  .game-status::before,
+  .emblem-ring,
+  .emblem-ring::before,
+  .emblem-ring::after,
+  .team-card-featured:hover::before {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
