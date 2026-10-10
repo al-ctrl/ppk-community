@@ -6887,3 +6887,110 @@ h3 em { color: #ffad62; }
     transition: none !important;
   }
 }
+
+/* =========================================================
+   PPK HALLOWEEN FISHING — REFINED EDITION
+   Lebih terasa Halloween, dekorasi tenang, layout tetap asli.
+========================================================= */
+
+/* Hentikan gerakan dekorasi yang terlalu ramai */
+.hero-stars,
+.hero-glow-two,
+.hero-ocean,
+.moon,
+.button-primary {
+  animation: none !important;
+}
+.hero-glow-one {
+  animation: ppkLanternGlow 14s ease-in-out infinite;
+}
+
+/* Ganti kelelawar yang melintas dengan jaring laba-laba statis di sudut hero */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 112px;
+  height: 112px;
+  pointer-events: none;
+  opacity: .18;
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: none !important;
+  transform: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d9b7ff' stroke-width='1.2' opacity='.9'%3E%3Cpath d='M0 0L120 120M0 0L120 80M0 0L80 120M0 0L120 40M0 0L40 120M0 0L120 0M0 0L0 120'/%3E%3Cpath d='M20 0Q18 18 0 20M42 0Q38 38 0 42M64 0Q58 58 0 64M86 0Q78 78 0 86M108 0Q98 98 0 108'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero::before { top: 0; left: 0; }
+.hero::after { top: 0; right: 0; transform: scaleX(-1) !important; }
+
+/* Palet Halloween yang lebih jelas: pumpkin orange + plum, bukan neon */
+:root {
+  --halloween-pumpkin: #ff963f;
+  --halloween-amber: #ffc078;
+  --halloween-plum: #9b78c9;
+}
+
+.hero-badge {
+  border-color: rgba(255, 150, 63, .36) !important;
+  background: linear-gradient(110deg, rgba(255, 150, 63, .11), rgba(95, 59, 125, .13)) !important;
+  color: #ffd09a !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 192, 120, .025), 0 5px 18px rgba(0, 0, 0, .12) !important;
+}
+.hero h1 em,
+h2 em,
+h3 em { color: #ffad62 !important; }
+.hero h1 span { color: #c4a6ed !important; }
+
+.button-primary {
+  background-size: auto !important;
+  box-shadow: 0 7px 22px rgba(255, 125, 45, .13), inset 0 1px rgba(255,255,255,.28) !important;
+}
+.button-primary:hover {
+  box-shadow: 0 9px 25px rgba(255, 125, 45, .2), inset 0 1px rgba(255,255,255,.3) !important;
+}
+
+/* Kartu seperti benda di dermaga saat malam Halloween */
+.game-card,
+.team-card,
+.member-card,
+.event-card,
+.dashboard-main,
+.dashboard-online {
+  border-color: rgba(172, 132, 204, .17) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .16), inset 0 1px rgba(255, 255, 255, .012) !important;
+}
+.game-card:hover,
+.team-card:hover,
+.member-card:hover,
+.event-card:hover {
+  border-color: rgba(255, 150, 63, .42) !important;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .2), 0 0 0 1px rgba(255, 150, 63, .045) !important;
+}
+
+/* Aksen jingga pada status dan scrollbar; gerakan hanya saat interaksi */
+.game-status {
+  color: #ffc078 !important;
+  border-color: rgba(255, 150, 63, .24) !important;
+  background: rgba(255, 150, 63, .075) !important;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff963f, #795b9f) !important;
+}
+
+@media (max-width: 700px) {
+  .hero::before,
+  .hero::after { width: 66px; height: 66px; opacity: .12; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow-one,
+  .hero-stars,
+  .hero-glow-two,
+  .hero-ocean,
+  .moon,
+  .button-primary,
+  .hero::before,
+  .hero::after { animation: none !important; }
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}
