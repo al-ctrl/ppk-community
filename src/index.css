@@ -6710,3 +6710,180 @@ h3 em { color: #ffad62; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; }
 }
+
+/* =========================================================
+   PPK HALLOWEEN FISHING — AESTHETIC MOTION LAYER
+   Animasi dekoratif saja: tidak mengubah struktur/layout.
+========================================================= */
+
+@keyframes ppkHalloweenTwinkle {
+  0%, 100% { opacity: .32; transform: translateY(0); }
+  50% { opacity: .72; transform: translateY(-4px); }
+}
+
+@keyframes ppkLanternGlow {
+  0%, 100% { opacity: .72; filter: blur(7px); }
+  50% { opacity: 1; filter: blur(12px); }
+}
+
+@keyframes ppkMoonDrift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes ppkBatFlyRight {
+  0% { transform: translate3d(-8vw, 0, 0) rotate(-7deg) scale(.82); opacity: 0; }
+  8% { opacity: .58; }
+  45% { transform: translate3d(48vw, -24px, 0) rotate(4deg) scale(1); }
+  88% { opacity: .5; }
+  100% { transform: translate3d(112vw, 12px, 0) rotate(8deg) scale(.88); opacity: 0; }
+}
+
+@keyframes ppkBatFlyLeft {
+  0% { transform: translate3d(8vw, 0, 0) rotate(8deg) scale(.7); opacity: 0; }
+  12% { opacity: .38; }
+  50% { transform: translate3d(-48vw, 18px, 0) rotate(-5deg) scale(.9); }
+  90% { opacity: .34; }
+  100% { transform: translate3d(-112vw, -12px, 0) rotate(-9deg) scale(.76); opacity: 0; }
+}
+
+@keyframes ppkFogDrift {
+  0%, 100% { transform: translate3d(-2%, 0, 0) scale(1); opacity: .28; }
+  50% { transform: translate3d(2%, -7px, 0) scale(1.05); opacity: .48; }
+}
+
+@keyframes ppkButtonShimmer {
+  0%, 72%, 100% { background-position: 0% 50%; }
+  84% { background-position: 100% 50%; }
+}
+
+/* Langit hero: bintang berkelip pelan dan kabut tipis */
+.hero-stars {
+  animation: ppkHalloweenTwinkle 7s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.hero-glow-one {
+  animation: ppkLanternGlow 8s ease-in-out infinite;
+}
+
+.hero-glow-two {
+  animation: ppkLanternGlow 10s ease-in-out infinite reverse;
+}
+
+.hero {
+  isolation: isolate;
+}
+
+/* Kelelawar siluet kecil melintas di langit, di belakang konten */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  width: 38px;
+  height: 24px;
+  pointer-events: none;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48'%3E%3Cpath fill='%23b7b1d8' d='M40 22C32 13 22 5 8 8l7 11L1 15l6 19 17-8 16 14 16-14 17 8 6-19-14 4 7-11C58 5 48 13 40 22Z'/%3E%3C/svg%3E");
+}
+
+.hero::before {
+  top: 17%;
+  left: -7%;
+  animation: ppkBatFlyRight 25s linear 2s infinite;
+}
+
+.hero::after {
+  top: 31%;
+  right: -7%;
+  width: 27px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 48'%3E%3Cpath fill='%23ffb36b' d='M40 22C32 13 22 5 8 8l7 11L1 15l6 19 17-8 16 14 16-14 17 8 6-19-14 4 7-11C58 5 48 13 40 22Z'/%3E%3C/svg%3E");
+  animation: ppkBatFlyLeft 31s linear 9s infinite;
+}
+
+/* Kabut lembut di bagian laut; tidak menangkap klik */
+.hero-ocean {
+  animation: ppkFogDrift 11s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* Bulan bergerak sangat halus, tanpa mengubah posisinya pada layout */
+.moon {
+  animation: ppkMoonDrift 9s ease-in-out infinite;
+  filter: drop-shadow(0 0 14px rgba(255, 176, 106, .12));
+}
+
+/* Badge terasa hidup, tetapi tidak berkedip agresif */
+.hero-badge {
+  box-shadow: 0 0 0 1px rgba(255, 155, 74, .025), 0 0 22px rgba(255, 155, 74, .035);
+  transition: border-color .25s ease, background-color .25s ease, box-shadow .25s ease;
+}
+.hero-badge:hover {
+  border-color: rgba(255, 176, 106, .46);
+  background: rgba(255, 155, 74, .11);
+  box-shadow: 0 0 24px rgba(255, 155, 74, .09);
+}
+
+/* Kilau singkat pada tombol utama, hanya saat animasi berjalan pelan */
+.button-primary {
+  background-size: 220% 100%;
+  animation: ppkButtonShimmer 8s ease-in-out infinite;
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+.button-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  animation-play-state: paused;
+}
+
+/* Kartu muncul lebih hidup saat pointer mendekat, tanpa menggeser grid */
+.game-card,
+.team-card,
+.member-card,
+.event-card {
+  transition: border-color .28s ease, box-shadow .28s ease, background-color .28s ease;
+}
+
+.game-card:hover,
+.team-card:hover,
+.member-card:hover,
+.event-card:hover {
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .2), 0 0 22px rgba(255, 155, 74, .045);
+}
+
+/* Jaga pengalaman tetap nyaman di layar kecil dan bagi pengguna reduced motion */
+@media (max-width: 700px) {
+  .hero::before,
+  .hero::after {
+    width: 24px;
+    height: 16px;
+  }
+  .hero::before { top: 13%; }
+  .hero::after { top: 25%; }
+  .hero-ocean { animation-duration: 14s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stars,
+  .hero-glow-one,
+  .hero-glow-two,
+  .hero::before,
+  .hero::after,
+  .hero-ocean,
+  .moon,
+  .button-primary {
+    animation: none !important;
+  }
+  .button-primary,
+  .game-card,
+  .team-card,
+  .member-card,
+  .event-card {
+    transition: none !important;
+  }
+}
