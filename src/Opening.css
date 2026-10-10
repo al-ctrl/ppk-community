@@ -2143,3 +2143,67 @@
     animation: none !important;
   }
 }
+
+
+/* ============================================================
+   ULTRA-LIGHT PERFORMANCE OVERRIDES
+   Fokus: mengurangi repaint GPU saat opening berjalan.
+   ============================================================ */
+.website-opening,
+.website-opening * {
+  animation-duration: .01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+}
+
+.website-opening .opening-particles {
+  display: none !important;
+}
+
+.website-opening .opening-glow {
+  filter: none !important;
+  opacity: .18 !important;
+  animation: none !important;
+  will-change: auto !important;
+}
+
+.website-opening .opening-grid,
+.website-opening .opening-background::before,
+.website-opening .opening-background::after,
+.website-opening .opening-content::before,
+.website-opening .opening-start-button::before,
+.website-opening .opening-dev-card::before {
+  display: none !important;
+  animation: none !important;
+}
+
+.website-opening .opening-fishit-logo,
+.website-opening .opening-ppk-logo,
+.website-opening .opening-start-logo,
+.website-opening .opening-dev-avatar,
+.website-opening .opening-moon,
+.website-opening .opening-mist,
+.website-opening .opening-fog {
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+.website-opening .opening-logo-ring,
+.website-opening .opening-logo-ring-two,
+.website-opening .opening-ppk-ring,
+.website-opening .opening-dev-avatar-ring {
+  animation: none !important;
+  will-change: auto !important;
+}
+
+.website-opening .opening-dev-card,
+.website-opening .opening-start-button {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .website-opening .opening-background { background-image: none !important; }
+  .website-opening .opening-glow { display: none !important; }
+}

@@ -133,16 +133,6 @@ export default function WebsiteOpening({
           avatar = apiUrl(avatar);
         }
 
-        console.log(
-          "[OPENING] Developer:",
-          {
-            name,
-            username: `@${username}`,
-            avatar,
-            hasPhoto: data.hasPhoto,
-          }
-        );
-
         if (cancelled) {
           return;
         }
@@ -236,7 +226,7 @@ export default function WebsiteOpening({
           <div className="opening-grid" />
 
           <div className="opening-particles">
-            {Array.from({ length: 10 }).map(
+            {Array.from({ length: 4 }).map(
               (_, index) => (
                 <span
                   key={index}
@@ -315,7 +305,7 @@ export default function WebsiteOpening({
         <div className="opening-grid" />
 
         <div className="opening-particles">
-          {Array.from({ length: 10 }).map(
+          {Array.from({ length: 4 }).map(
             (_, index) => (
               <span
                 key={index}
