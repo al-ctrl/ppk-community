@@ -666,6 +666,3 @@ console.log(
 console.log(
   `[ADMIN AUTH] Session file: ${SESSIONS_FILE}`
 );
-
-
-awdlahwiouhdauiwhed
